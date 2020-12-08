@@ -20,7 +20,7 @@ namespace AdventOfCode2020.Dec08
             var i = 0;
             var acc = 0;
 
-            while (!executedLines[i])
+            while (i >= 0 && i < instructions.Length &&!executedLines[i])
             {
                 var instruction = instructions[i];
 

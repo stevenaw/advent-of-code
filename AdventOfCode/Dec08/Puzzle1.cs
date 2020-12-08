@@ -8,7 +8,7 @@ namespace AdventOfCode2020.Dec08
         {
             var instructions = InstructionHelper.Parse(lines);
 
-            var success = InstructionHelper.TryExecute(instructions, out int result);
+            InstructionHelper.TryExecute(instructions, out int result);
 
             return result;
         }
