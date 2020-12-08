@@ -1,0 +1,30 @@
+using NUnit.Framework;
+
+namespace AdventOfCode2020.Tests
+{
+    [TestFixture]
+    public class PuzzleTests
+    {
+        [TestCase(1, 1, ExpectedResult = 878724)]
+        [TestCase(1, 2, ExpectedResult = 201251610)]
+        [TestCase(2, 1, ExpectedResult = 572)]
+        [TestCase(2, 2, ExpectedResult = 306)]
+        [TestCase(3, 1, ExpectedResult = 244)]
+        [TestCase(3, 2, ExpectedResult = 9406609920)]
+        [TestCase(4, 1, ExpectedResult = 256)]
+        [TestCase(4, 2, ExpectedResult = 198)]
+        [TestCase(5, 1, ExpectedResult = 913)]
+        [TestCase(5, 2, ExpectedResult = 717)]
+        [TestCase(6, 1, ExpectedResult = 6680)]
+        [TestCase(6, 2, ExpectedResult = 3117)]
+        [TestCase(7, 1, ExpectedResult = 242)]
+        [TestCase(7, 2, ExpectedResult = 176035)]
+        public long VerifyResults(int day, int puzzleNumber)
+        {
+            var puzzle = AdventPuzzleHelper.GetPuzzle(day, puzzleNumber);
+            var result = puzzle.Solve();
+
+            return result;
+        }
+    }
+}
