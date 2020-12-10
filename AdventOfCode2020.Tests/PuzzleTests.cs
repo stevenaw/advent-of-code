@@ -21,6 +21,10 @@ namespace AdventOfCode2020.Tests
         [TestCase(7, 2, ExpectedResult = 176035)]
         [TestCase(8, 1, ExpectedResult = 2080)]
         [TestCase(8, 2, ExpectedResult = 2477)]
+        [TestCase(9, 1, ExpectedResult = 57195069)]
+        [TestCase(9, 1, ExpectedResult = 57195069)]
+        [TestCase(9, 2, ExpectedResult = 7409241)]
+        [TestCase(10, 1, ExpectedResult = 1998)]
         public long VerifyResults(int day, int puzzleNumber)
         {
             var puzzle = AdventPuzzleHelper.GetPuzzle(day, puzzleNumber);
