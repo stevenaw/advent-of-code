@@ -12,15 +12,8 @@ namespace AdventOfCode2020.Dec09
             {
                 var valid = false;
                 for (var j = i - preambleSize; j < i && !valid; j++)
-                {
                     for (var k = i - preambleSize; k < i && !valid; k++)
-                    {
-                        if (numbers[j] != numbers[k] && numbers[j] + numbers[k] == numbers[i])
-                        {
-                            valid = true;
-                        }
-                    }
-                }
+                        valid = numbers[j] != numbers[k] && numbers[j] + numbers[k] == numbers[i];
 
                 if (!valid)
                     return numbers[i];

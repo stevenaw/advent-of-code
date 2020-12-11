@@ -28,7 +28,7 @@ namespace AdventOfCode2020.Tests
         [TestCase(10, 2, ExpectedResult = 347250213298688)]
         public long VerifyResults(int day, int puzzleNumber)
         {
-            var puzzle = AdventPuzzleHelper.GetPuzzle(day, puzzleNumber);
+            var puzzle = AdventPuzzle.GetPuzzle(day, puzzleNumber);
             var result = puzzle.Solve();
 
             return result;

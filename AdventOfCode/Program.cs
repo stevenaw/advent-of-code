@@ -8,7 +8,7 @@ namespace AdventOfCode2020
         {
             var (day, puzzleNumber) = ParseArguments(args);
 
-            var puzzle = AdventPuzzleHelper.GetPuzzle(day, puzzleNumber);
+            var puzzle = AdventPuzzle.GetPuzzle(day, puzzleNumber);
             var result = puzzle.Solve();
 
             Console.WriteLine($"Result: {result.ToString()}");
