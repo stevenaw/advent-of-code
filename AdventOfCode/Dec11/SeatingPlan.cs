@@ -26,7 +26,7 @@ namespace AdventOfCode2020.Dec11
         }
 
 
-        public bool TryMove(ISeatingStrategy seatingStrategy)
+        public bool TryMove(ISeatingStrategy seatingStrategy, int neighbourTolerance)
         {
             var newLayout = GC.AllocateUninitializedArray<SeatState[]>(Seats.Length);
             var hasChanged = false;
@@ -48,7 +48,7 @@ namespace AdventOfCode2020.Dec11
                             newLayout[i][j] = SeatState.Occupied;
                             hasChanged = true;
                         }
-                        else if (Seats[i][j] == SeatState.Occupied && neighbourCount >= 4)
+                        else if (Seats[i][j] == SeatState.Occupied && neighbourCount >= neighbourTolerance)
                         {
                             newLayout[i][j] = SeatState.Empty;
                             hasChanged = true;

@@ -11,7 +11,7 @@ namespace AdventOfCode2020.Dec11
             var seatingStrategy = new AdjacentSeatingStrategy();
 
             var count = 0L;
-            while (seatingPlan.TryMove(seatingStrategy))
+            while (seatingPlan.TryMove(seatingStrategy, 4))
                 count++;
 
             return seatingPlan.CountOccupiedSeats();
