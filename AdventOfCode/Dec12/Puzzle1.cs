@@ -9,15 +9,8 @@ namespace AdventOfCode2020.Dec12
         {
             var ship = new Ship();
 
-            foreach(var line in lines)
-            {
-                var span = line.AsSpan();
-
-                var action = span[0];
-                var magnitude = Int32.Parse(span.Slice(1));
-
-                ship.Move(action, magnitude);
-            }
+            foreach(var (operation, magnitude) in InstructionParser.ParseLines(lines))
+                ship.Move(operation, magnitude);
 
             return ship.ManhattanDistanceFromOrigin;
         }
