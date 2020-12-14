@@ -46,9 +46,12 @@ namespace AdventOfCode2020.Dec14
                 var wildcardBit = 1UL << i;
                 if ((wildcardMask & wildcardBit) != 0)
                 {
-                    var newAddresses = new List<ulong>(list.Count);
+                    var newAddresses = new ulong[list.Count];
+
+                    var j = 0;
                     foreach (var item in list)
-                        newAddresses.Add(item & ~wildcardBit);
+                        newAddresses[j++] = (item & ~wildcardBit);
+
                     list.AddRange(newAddresses);
                 }
             }
