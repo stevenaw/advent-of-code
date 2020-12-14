@@ -7,7 +7,7 @@ namespace AdventOfCode2020.Dec14
         protected override long Solve(IEnumerable<string> lines)
         {
             var enumerator = lines.GetEnumerator();
-            var memory = new Dictionary<int, ulong>();
+            var memory = new Dictionary<ulong, ulong>();
 
             enumerator.MoveNext();
             while (Initialization.TryParse(ref enumerator, out var initialization))

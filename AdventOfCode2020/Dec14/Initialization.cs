@@ -7,7 +7,7 @@ namespace AdventOfCode2020.Dec14
     {
         public ulong Mask { get; set; }
         public ulong MaskOverrides { get; set; }
-        public List<(int Address, ulong Value)> Assignments { get; set; }
+        public List<(ulong Address, ulong Value)> Assignments { get; set; }
 
         public static bool TryParse(ref IEnumerator<string> enumerator, out Initialization result)
         {
@@ -33,7 +33,7 @@ namespace AdventOfCode2020.Dec14
                 idx++;
             }
 
-            var assignments = new List<(int Address, ulong Value)>();
+            var assignments = new List<(ulong Address, ulong Value)>();
             while (enumerator.MoveNext() && enumerator.Current.StartsWith("mem"))
             {
                 var line = enumerator.Current.AsSpan();
@@ -42,7 +42,7 @@ namespace AdventOfCode2020.Dec14
 
                 var addressIdx = line.IndexOf(']');
                 var addressSpan = line.Slice(0, addressIdx);
-                if (!Int32.TryParse(addressSpan, out var address))
+                if (!UInt64.TryParse(addressSpan, out var address))
                     address = 0;
 
                 var valueIdx = line.LastIndexOf(' ');
