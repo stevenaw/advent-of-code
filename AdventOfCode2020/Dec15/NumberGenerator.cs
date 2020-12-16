@@ -7,16 +7,17 @@ namespace AdventOfCode2020.Dec15
         public static long GetNthNumber(IEnumerable<int> seed, int n)
         {
             const int PastIndexCount = 2;
-            var history = new Dictionary<int, List<int>>();
+            var history = new Dictionary<int, CircularBuffer<int>>();
 
             var i = 1;
             var prevNumber = 0;
 
             foreach (var item in seed)
             {
-                history[item] = new List<int>(PastIndexCount) {
-                    i++
-                };
+                var historyEntry = new CircularBuffer<int>(PastIndexCount);
+                historyEntry.Add(i++);
+
+                history[item] = historyEntry;
                 prevNumber = item;
             }
 
@@ -26,15 +27,14 @@ namespace AdventOfCode2020.Dec15
 
                 var nextNumber = 0;
                 if (prevOccurences.Count != 1)
-                {
-                    nextNumber = prevOccurences[prevOccurences.Count - 1] - prevOccurences[prevOccurences.Count - 2];
-                    prevOccurences.RemoveAt(0); // Keep the list size small
-                }
+                    nextNumber = prevOccurences[0] - prevOccurences[1];
 
-                if (!history.ContainsKey(nextNumber))
-                    history[nextNumber] = new List<int>(PastIndexCount);
+                CircularBuffer<int> historyEntry;
+                if (!history.TryGetValue(nextNumber, out historyEntry))
+                    historyEntry = new CircularBuffer<int>(PastIndexCount);
 
-                history[nextNumber].Add(i++);
+                historyEntry.Add(i++);
+                history[nextNumber] = historyEntry;
                 prevNumber = nextNumber;
             }
 
