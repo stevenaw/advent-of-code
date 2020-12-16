@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace AdventOfCode2020.Dec15
 {
-    class Puzzle1 : AdventPuzzle
+    class Puzzle2 : AdventPuzzle
     {
         protected override long Solve(IEnumerable<string> lines)
         {
             var seed = ParsingHelpers.ParseIntegers(lines.First(), ',');
-            var result = NumberGenerator.GetNthNumber(seed, 2020);
+            var result = NumberGenerator.GetNthNumber(seed, 30000000);
             return result;
         }
     }
