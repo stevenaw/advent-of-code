@@ -6,7 +6,14 @@ namespace AdventOfCode2020.Dec16
     class FuzzyFieldMatch
     {
         public string Name { get; set; }
-        public List<(int min, int max)> Possibilities { get; set; }
+        public List<Range> Possibilities { get; set; }
+
+        public class Range
+        {
+            public int Min { get; set; }
+            public int Max { get; set; }
+            public bool IsInRange(int value) => value >= Min && value <= Max;
+        }
     }
 
     class Parser
@@ -33,16 +40,17 @@ namespace AdventOfCode2020.Dec16
                 var fuzzy = new FuzzyFieldMatch()
                 {
                     Name = splits[0],
-                    Possibilities = new List<(int min, int max)>()
+                    Possibilities = new ()
                 };
 
                 for (var i = 1; i < splits.Length; i++)
                 {
                     var minMax = splits[i].Split('-');
-                    fuzzy.Possibilities.Add((
-                        Int32.Parse(minMax[0]),
-                        Int32.Parse(minMax[1])
-                    ));
+                    fuzzy.Possibilities.Add(new ()
+                    {
+                        Min = Int32.Parse(minMax[0]),
+                        Max = Int32.Parse(minMax[1])
+                    });
                 }
 
                 result.Add(fuzzy);

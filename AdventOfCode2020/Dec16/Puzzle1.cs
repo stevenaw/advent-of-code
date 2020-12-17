@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode2020.Dec16
 {
@@ -18,7 +15,7 @@ namespace AdventOfCode2020.Dec16
             var invalidNumberSum = 0;
             foreach(var ticket in nearbyTickets)
             {
-                var invalidFields = ticket.Where(o => !options.Any(opt => opt.Possibilities.Any(p => o >= p.min && o <= p.max)));
+                var invalidFields = ticket.Where(o => !options.Any(opt => opt.Possibilities.Any(p => p.IsInRange(o))));
                 invalidNumberSum += invalidFields.Sum();
             }
 
