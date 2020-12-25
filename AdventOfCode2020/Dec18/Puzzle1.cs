@@ -12,7 +12,7 @@ namespace AdventOfCode2020.Dec18
 
             foreach(var line in lines)
             {
-                var expression = ParseExpression(line);
+                var expression = Expression.Parse<LtrExpression>(line);
                 var result = expression.Evaluate();
                 sum += result;
             }
@@ -20,67 +20,9 @@ namespace AdventOfCode2020.Dec18
             return sum;
         }
 
-        private static Expression ParseExpression(string line)
+        public class LtrExpression : Expression
         {
-            var expressionHistory = new Stack<Expression>();
-            var currentExpression = new Expression();
-
-            for (var i = 0; i < line.Length; i++)
-            {
-                if (line[i] == '+')
-                    currentExpression.Operators.Add(Operation.Add);
-                else if (line[i] == '*')
-                    currentExpression.Operators.Add(Operation.Multiply);
-                else if (Char.IsDigit(line[i]))
-                    currentExpression.Operands.Add(new Operand()
-                    {
-                        Value = line[i] - '0'
-                    });
-                else if (line[i] == '(')
-                {
-                    var subExpression = new Expression();
-
-                    currentExpression.Operands.Add(subExpression);
-
-                    expressionHistory.Push(currentExpression);
-                    currentExpression = subExpression;
-                }
-                else if (line[i] == ')')
-                {
-                    currentExpression = expressionHistory.Pop();
-                }
-            }
-
-            return currentExpression;
-        }
-
-        public enum Operation
-        {
-            Add,
-            Multiply
-        }
-
-        public class Operand : IExpression
-        {
-            public long Value { get; set; }
-
-            public long Evaluate()
-            {
-                return Value;
-            }
-        }
-
-        public interface IExpression
-        {
-            long Evaluate();
-        }
-
-        public class Expression : IExpression
-        {
-            public List<IExpression> Operands { get; set; } = new List<IExpression>();
-            public List<Operation> Operators { get; set; } = new List<Operation>();
-
-            public long Evaluate()
+            public override long Evaluate()
             {
                 var value = Operands.First().Evaluate();
 
