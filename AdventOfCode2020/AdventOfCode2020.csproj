@@ -2,8 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+	<Using Include="AdventOfCode" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="Dec01\Data.txt">

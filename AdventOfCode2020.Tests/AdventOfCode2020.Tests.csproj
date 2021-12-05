@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -14,6 +14,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AdventOfCode2020\AdventOfCode2020.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Using Include="AdventOfCode" />
   </ItemGroup>
 
 </Project>

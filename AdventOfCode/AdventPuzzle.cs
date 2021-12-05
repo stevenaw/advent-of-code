@@ -4,15 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace AdventOfCode2020
+namespace AdventOfCode
 {
     public abstract class AdventPuzzle
     {
-        public static AdventPuzzle GetPuzzle(int day, int puzzleNumber)
+        public static AdventPuzzle GetPuzzle(int year, int day, int puzzleNumber)
         {
-            var typeName = $"{typeof(AdventPuzzle).Namespace}.Dec{day:00}.Puzzle{puzzleNumber}";
-            var type = Assembly.GetExecutingAssembly().GetType(typeName);
+            var assemblyName = $"{typeof(AdventPuzzle).Namespace}{year}";
+            var typeName = $"{assemblyName}.Dec{day:00}.Puzzle{puzzleNumber}";
 
+            var asm = Assembly.Load(assemblyName);
+            var type = asm.GetType(typeName);
             var puzzle = Activator.CreateInstance(type);
 
             return (AdventPuzzle)puzzle;

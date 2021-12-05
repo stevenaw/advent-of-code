@@ -6,22 +6,29 @@ namespace AdventOfCode2020
     {
         static void Main(string[] args)
         {
-            var (day, puzzleNumber) = ParseArguments(args);
+            var (year, day, puzzleNumber) = ParseArguments(args);
 
-            var puzzle = AdventPuzzle.GetPuzzle(day, puzzleNumber);
+            var puzzle = AdventPuzzle.GetPuzzle(year, day, puzzleNumber);
             var result = puzzle.Solve();
 
             Console.WriteLine($"Result: {result.ToString()}");
         }
 
-        private static (int day, int puzzleNumber) ParseArguments(string[] args)
+        private static (int year, int day, int puzzleNumber) ParseArguments(string[] args)
         {
-            int day = 0, puzzleNumber = 0;
+            int year = 0, day = 0, puzzleNumber = 0;
 
             for(var i = 0; i < args.Length; i+=2)
             {
                 switch (args[i])
                 {
+                    case "--year":
+                    case "-y":
+                        {
+                            year = Int32.Parse(args[i + 1]);
+                            break;
+                        }
+
                     case "--day":
                     case "-d":
                         {
@@ -38,7 +45,7 @@ namespace AdventOfCode2020
                 }
             }
 
-            return (day, puzzleNumber);
+            return (year, day, puzzleNumber);
         }
     }
 }
