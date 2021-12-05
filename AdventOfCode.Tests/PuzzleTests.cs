@@ -1,8 +1,8 @@
 using NUnit.Framework;
 
-[assembly:Parallelizable(ParallelScope.Children)]
+[assembly: Parallelizable(ParallelScope.Children)]
 
-namespace AdventOfCode2020.Tests
+namespace AdventOfCode.Tests
 {
     [TestFixture]
     public class PuzzleTests

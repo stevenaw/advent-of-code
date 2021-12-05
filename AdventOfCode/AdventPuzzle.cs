@@ -10,7 +10,7 @@ namespace AdventOfCode
     {
         public static AdventPuzzle GetPuzzle(int year, int day, int puzzleNumber)
         {
-            var assemblyName = $"{typeof(AdventPuzzle).Namespace}{year}";
+            var assemblyName = $"{typeof(AdventPuzzle).Namespace}.Y{year}";
             var typeName = $"{assemblyName}.Dec{day:00}.Puzzle{puzzleNumber}";
 
             var asm = Assembly.Load(assemblyName);
