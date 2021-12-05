@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2020
+﻿namespace AdventOfCode
 {
     public struct CircularBuffer<T>
     {

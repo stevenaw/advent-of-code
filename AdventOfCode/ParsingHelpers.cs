@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AdventOfCode2020
+namespace AdventOfCode
 {
-    class ParsingHelpers
+    public static class ParsingHelpers
     {
         public static List<int> ParseIntegers(string line, char delim)
             => ParseIntegers(line.AsSpan(), delim);
