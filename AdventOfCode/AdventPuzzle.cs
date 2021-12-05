@@ -10,15 +10,23 @@ namespace AdventOfCode
             var typeName = $"{assemblyName}.Dec{day:00}.Puzzle{puzzleNumber}";
 
             var asm = Assembly.Load(assemblyName);
+            if (asm is null)
+                throw new InvalidOperationException("Could not find the assembly");
+
             var type = asm.GetType(typeName);
+            if (type is null)
+                throw new InvalidOperationException("Could not find the puzzle type");
+
             var puzzle = Activator.CreateInstance(type);
+            if (puzzle is null)
+                throw new InvalidOperationException("Could not create the puzzle");
 
             return (AdventPuzzle)puzzle;
         }
 
         public long Solve()
         {
-            var day = GetType().Namespace.Split('.').Last();
+            var day = GetType().Namespace!.Split('.').Last();
             var fileName = $"./{day}/Data.txt";
             return Solve(File.ReadLines(fileName));
         }
