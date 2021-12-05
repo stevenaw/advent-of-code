@@ -6,22 +6,23 @@ namespace AdventOfCode2020
     class ParsingHelpers
     {
         public static List<int> ParseIntegers(string line, char delim)
+            => ParseIntegers(line.AsSpan(), delim);
+        public static List<int> ParseIntegers(ReadOnlySpan<char> line, char delim)
         {
             var ids = new List<int>();
-            var idSpan = line.AsSpan();
 
-            var nextDelim = idSpan.IndexOf(delim);
-            while (!idSpan.IsEmpty && nextDelim != -1)
+            var nextDelim = line.IndexOf(delim);
+            while (!line.IsEmpty && nextDelim != -1)
             {
-                var t = idSpan.Slice(0, nextDelim);
+                var t = line.Slice(0, nextDelim);
                 if (Int32.TryParse(t, out var num))
                     ids.Add(num);
 
-                idSpan = idSpan.Slice(t.Length + 1);
-                nextDelim = idSpan.IndexOf(delim);
+                line = line.Slice(t.Length + 1);
+                nextDelim = line.IndexOf(delim);
             }
 
-            if (Int32.TryParse(idSpan, out var lastNum))
+            if (Int32.TryParse(line, out var lastNum))
                 ids.Add(lastNum);
 
             return ids;

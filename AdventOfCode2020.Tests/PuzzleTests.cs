@@ -1,5 +1,7 @@
 using NUnit.Framework;
 
+[assembly:Parallelizable(ParallelScope.Children)]
+
 namespace AdventOfCode2020.Tests
 {
     [TestFixture]
@@ -42,6 +44,7 @@ namespace AdventOfCode2020.Tests
         [TestCase(2020, 17, 2, ExpectedResult = 2292)]
         [TestCase(2020, 18, 1, ExpectedResult = 45283905029161)]
         [TestCase(2020, 18, 2, ExpectedResult = 216975281211165)]
+        [TestCase(2020, 19, 1, ExpectedResult = 285)]
         public long VerifyResults(int year, int day, int puzzleNumber)
         {
             var puzzle = AdventPuzzle.GetPuzzle(year, day, puzzleNumber);
