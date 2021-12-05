@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace AdventOfCode.Y2020.Dec03
+﻿namespace AdventOfCode.Y2020.Dec03
 {
     static class TreeParser
     {

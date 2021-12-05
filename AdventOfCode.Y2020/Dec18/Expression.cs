@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace AdventOfCode.Y2020.Dec18
+﻿namespace AdventOfCode.Y2020.Dec18
 {
     public abstract class Expression : IExpression
     {

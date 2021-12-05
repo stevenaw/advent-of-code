@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AdventOfCode.Y2020.Dec02
+﻿namespace AdventOfCode.Y2020.Dec02
 {
     struct Rule
     {

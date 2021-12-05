@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AdventOfCode.Y2020.Dec04
+﻿namespace AdventOfCode.Y2020.Dec04
 {
     public static class PassportParser
     {

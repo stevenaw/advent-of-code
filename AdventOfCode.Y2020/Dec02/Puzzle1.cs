@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AdventOfCode.Y2020.Dec02
+﻿namespace AdventOfCode.Y2020.Dec02
 {
     public class Puzzle1 : AdventPuzzle
     {

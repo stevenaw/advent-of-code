@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AdventOfCode.Y2020.Dec09
+﻿namespace AdventOfCode.Y2020.Dec09
 {
     static class Helpers
     {

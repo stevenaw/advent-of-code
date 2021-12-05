@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace AdventOfCode.Y2020.Dec01
+﻿namespace AdventOfCode.Y2020.Dec01
 {
     class Puzzle2 : AdventPuzzle
     {
