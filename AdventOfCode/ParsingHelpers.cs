@@ -2,8 +2,6 @@
 {
     public static class ParsingHelpers
     {
-        public static List<int> ParseIntegers(string line, char delim)
-            => ParseIntegers(line.AsSpan(), delim);
         public static List<int> ParseIntegers(ReadOnlySpan<char> line, char delim)
         {
             var ids = new List<int>();
