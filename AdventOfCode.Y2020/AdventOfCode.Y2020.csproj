@@ -1,12 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
     <TargetFramework>net6.0</TargetFramework>
 	<ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <ApplicationIcon />
-    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,63 +11,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Dec01\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec02\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec03\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec04\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec06\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec05\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec07\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec08\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec09\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec10\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec11\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec12\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec13\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec14\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec15\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec16\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec17\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec18\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Dec19\Data.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="Dec01\Data.txt" />
+    <EmbeddedResource Include="Dec02\Data.txt" />
+    <EmbeddedResource Include="Dec03\Data.txt" />
+    <EmbeddedResource Include="Dec04\Data.txt" />
+    <EmbeddedResource Include="Dec05\Data.txt" />
+    <EmbeddedResource Include="Dec06\Data.txt" />
+    <EmbeddedResource Include="Dec07\Data.txt" />
+    <EmbeddedResource Include="Dec08\Data.txt" />
+    <EmbeddedResource Include="Dec09\Data.txt" />
+    <EmbeddedResource Include="Dec10\Data.txt" />
+    <EmbeddedResource Include="Dec11\Data.txt" />
+    <EmbeddedResource Include="Dec12\Data.txt" />
+    <EmbeddedResource Include="Dec13\Data.txt" />
+    <EmbeddedResource Include="Dec14\Data.txt" />
+    <EmbeddedResource Include="Dec15\Data.txt" />
+    <EmbeddedResource Include="Dec16\Data.txt" />
+    <EmbeddedResource Include="Dec17\Data.txt" />
+    <EmbeddedResource Include="Dec18\Data.txt" />
+    <EmbeddedResource Include="Dec19\Data.txt" />
   </ItemGroup>
-
 </Project>

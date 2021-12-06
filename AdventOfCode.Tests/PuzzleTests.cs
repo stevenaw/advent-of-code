@@ -1,6 +1,6 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-[assembly: Parallelizable(ParallelScope.Children)]
+//[assembly: Parallelizable(ParallelScope.Children)]
 
 namespace AdventOfCode.Tests
 {

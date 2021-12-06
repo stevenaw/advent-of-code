@@ -26,9 +26,17 @@ namespace AdventOfCode
 
         public long Solve()
         {
-            var day = GetType().Namespace!.Split('.').Last();
-            var fileName = $"./{day}/Data.txt";
-            return Solve(File.ReadLines(fileName));
+            var ns = GetType().Namespace!;
+            var asm = GetType().Assembly;
+            var data = asm.GetManifestResourceStream($"{ns}.Data.txt")!;
+
+            var lines = new List<string>();
+
+            using var reader = new StreamReader(data);
+            while (!reader.EndOfStream)
+                lines.Add(reader.ReadLine()!);
+
+            return Solve(lines);
         }
 
         protected abstract long Solve(IEnumerable<string> lines);

@@ -1,15 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AdventOfCode.Y2015\AdventOfCode.Y2015.csproj" />
-    <ProjectReference Include="..\AdventOfCode.Y2020\AdventOfCode.Y2020.csproj" />
+    <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Dec01\Data.txt" />
   </ItemGroup>
 
 </Project>
