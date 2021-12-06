@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Y2015.Dec03
 {
-    internal record Coordinate
+    internal record struct Coordinate
     {
         public int X { get; init; }
         public int Y { get; init; }
