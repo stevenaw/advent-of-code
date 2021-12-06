@@ -15,7 +15,7 @@
 
             var compoundRule = rule as CompoundRule;
 
-            foreach (var subRule in compoundRule.SubRules)
+            foreach (var subRule in compoundRule!.SubRules)
             {
                 var matchesSubRule = true;
                 var allMatchedChars = 0;

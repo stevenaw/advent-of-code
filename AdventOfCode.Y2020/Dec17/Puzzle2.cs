@@ -96,7 +96,11 @@ namespace AdventOfCode.Y2020.Dec17
             public int W { get; init; }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public bool Equals(ConwayHyperCube other) => Equals(other.X, other.Y, other.Z, other.W);
+            public bool Equals(ConwayHyperCube? other)
+            {
+                ArgumentNullException.ThrowIfNull(other);
+                return Equals(other.X, other.Y, other.Z, other.W);
+            }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public bool Equals(int x, int y, int z, int w) => X == x && Y == y && Z == z && W == w;

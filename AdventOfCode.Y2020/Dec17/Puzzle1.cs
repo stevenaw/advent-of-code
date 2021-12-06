@@ -86,7 +86,11 @@ namespace AdventOfCode.Y2020.Dec17
             public int Z { get; init; }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public bool Equals(ConwayCube other) => Equals(other.X, other.Y, other.Z);
+            public bool Equals(ConwayCube? other)
+            {
+                ArgumentNullException.ThrowIfNull(other);
+                return Equals(other.X, other.Y, other.Z);
+            }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public bool Equals(int x, int y, int z) => X == x && Y == y && Z == z;

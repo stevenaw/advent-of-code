@@ -4,8 +4,9 @@
     {
         public int RuleNumber { get; init; }
 
-        public int CompareTo(Rule other)
+        public int CompareTo(Rule? other)
         {
+            ArgumentNullException.ThrowIfNull(other);
             return RuleNumber.CompareTo(other.RuleNumber);
         }
     }

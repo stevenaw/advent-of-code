@@ -1,12 +1,14 @@
-﻿namespace AdventOfCode.Y2020.Dec14
-{
-    class Initialization
-    {
-        public ulong Mask { get; set; }
-        public ulong MaskOverrides { get; set; }
-        public List<(ulong Address, ulong Value)> Assignments { get; set; }
+﻿using System.Diagnostics.CodeAnalysis;
 
-        public static bool TryParse(ref IEnumerator<string> enumerator, out Initialization result)
+namespace AdventOfCode.Y2020.Dec14
+{
+    record Initialization
+    {
+        public ulong Mask { get; init; }
+        public ulong MaskOverrides { get; init; }
+        public List<(ulong Address, ulong Value)> Assignments { get; init; }
+
+        public static bool TryParse(ref IEnumerator<string> enumerator, [NotNullWhen(true)] out Initialization? result)
         {
             ulong mask = 0L;
             ulong maskOverrides = 0L;
@@ -14,7 +16,7 @@
 
             if (string.IsNullOrEmpty(maskLine) || !maskLine.StartsWith("mask"))
             {
-                result = null;
+                result = default;
                 return false;
             }
 

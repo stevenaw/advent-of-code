@@ -1,14 +1,20 @@
 ﻿namespace AdventOfCode.Y2020.Dec16
 {
-    class FuzzyFieldMatch
+    record FuzzyFieldMatch
     {
-        public string Name { get; set; }
-        public List<Range> Possibilities { get; set; }
+        public string Name { get; }
+        public List<Range> Possibilities { get; }
 
-        public class Range
+        public FuzzyFieldMatch(string name)
         {
-            public int Min { get; set; }
-            public int Max { get; set; }
+            Name = name;
+            Possibilities = new();
+        }
+
+        public record Range
+        {
+            public int Min { get; init; }
+            public int Max { get; init; }
             public bool IsInRange(int value) => value >= Min && value <= Max;
         }
     }
@@ -34,11 +40,7 @@
             {
                 var splits = enumerator.Current.Split(new string[] { ": ", " or " }, StringSplitOptions.RemoveEmptyEntries);
 
-                var fuzzy = new FuzzyFieldMatch()
-                {
-                    Name = splits[0],
-                    Possibilities = new()
-                };
+                var fuzzy = new FuzzyFieldMatch(splits[0]);
 
                 for (var i = 1; i < splits.Length; i++)
                 {
