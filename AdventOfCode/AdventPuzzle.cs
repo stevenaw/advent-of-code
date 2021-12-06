@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace AdventOfCode
 {
@@ -30,13 +31,18 @@ namespace AdventOfCode
             var asm = GetType().Assembly;
             var data = asm.GetManifestResourceStream($"{ns}.Data.txt")!;
 
-            var lines = new List<string>();
+            var lines = EnumerateLines(data);
+            return Solve(lines);
+        }
+
+        private static IEnumerable<string> EnumerateLines(Stream data)
+        {
+            // TODO: Not make a million little strings.
+            // Consider if we can use UnmanagedMemoryStream
 
             using var reader = new StreamReader(data);
             while (!reader.EndOfStream)
-                lines.Add(reader.ReadLine()!);
-
-            return Solve(lines);
+                yield return reader.ReadLine()!;
         }
 
         protected abstract long Solve(IEnumerable<string> lines);

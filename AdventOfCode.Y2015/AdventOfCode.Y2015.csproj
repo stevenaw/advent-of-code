@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Dec02\Data.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Dec01\Data.txt" />
+    <EmbeddedResource Include="Dec02\Data.txt" />
   </ItemGroup>
 
 </Project>
