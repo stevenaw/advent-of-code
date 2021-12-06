@@ -2,11 +2,11 @@
 {
     public class Puzzle2 : AdventPuzzle
     {
-        protected override long Solve(IEnumerable<string> fileContents)
+        protected override long Solve(IEnumerable<string> lines)
         {
             var validCount = 0;
 
-            foreach (var r in fileContents)
+            foreach (var r in lines)
             {
                 var rule = Rule.Parse(r);
                 if (IsValid(rule))

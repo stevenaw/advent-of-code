@@ -2,9 +2,9 @@
 {
     public class Puzzle1 : AdventPuzzle
     {
-        protected override long Solve(IEnumerable<string> fileContents)
+        protected override long Solve(IEnumerable<string> lines)
         {
-            var numbers = fileContents.Select(o => int.Parse(o)).ToArray();
+            var numbers = lines.Select(o => int.Parse(o)).ToArray();
 
             for (var i = 0; i < numbers.Length; i++)
             {

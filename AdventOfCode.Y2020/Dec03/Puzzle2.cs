@@ -2,9 +2,9 @@
 {
     public class Puzzle2 : AdventPuzzle
     {
-        protected override long Solve(IEnumerable<string> fileContents)
+        protected override long Solve(IEnumerable<string> lines)
         {
-            var trees = TreeParser.ParseTrees(fileContents);
+            var trees = TreeParser.ParseTrees(lines);
 
             var result = 1L;
             foreach (var slope in Slopes)

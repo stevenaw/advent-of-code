@@ -4,11 +4,11 @@ namespace AdventOfCode.Y2020.Dec04
 {
     public class Puzzle2 : AdventPuzzle
     {
-        protected override long Solve(IEnumerable<string> fileContents)
+        protected override long Solve(IEnumerable<string> lines)
         {
             var validCount = 0L;
 
-            var passports = PassportParser.ParsePassports(fileContents);
+            var passports = PassportParser.ParsePassports(lines);
             foreach (var passport in passports)
                 if (ValidatePassport(passport))
                     validCount++;
