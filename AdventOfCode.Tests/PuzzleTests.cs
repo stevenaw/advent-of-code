@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 
-[assembly: Parallelizable(ParallelScope.Children)]
-
 namespace AdventOfCode.Tests
 {
     [TestFixture]
@@ -10,6 +8,7 @@ namespace AdventOfCode.Tests
         [TestCase(2015, 1, 1, ExpectedResult = 280)]
         [TestCase(2015, 1, 2, ExpectedResult = 1797)]
         [TestCase(2015, 2, 1, ExpectedResult = 1588178)]
+        [TestCase(2015, 2, 2, ExpectedResult = 3783758)]
 
         [TestCase(2020, 1, 1, ExpectedResult = 878724)]
         [TestCase(2020, 1, 2, ExpectedResult = 201251610)]

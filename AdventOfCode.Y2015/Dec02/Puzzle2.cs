@@ -1,11 +1,11 @@
 ﻿namespace AdventOfCode.Y2015.Dec02
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle
     {
         protected override long Solve(IEnumerable<string> lines)
         {
             var total = 0L;
-            var strategy = new PaperWrappingStrategy();
+            var strategy = new RibbonWrappingStrategy();
 
             foreach (var line in lines)
                 if (Dimensions.TryParse(line, out var value))
