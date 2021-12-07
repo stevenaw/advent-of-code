@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="Dec02\Data.txt" />
     <None Remove="Dec03\Data.txt" />
+    <None Remove="Dec04\Data.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
     <EmbeddedResource Include="Dec01\Data.txt" />
     <EmbeddedResource Include="Dec02\Data.txt" />
     <EmbeddedResource Include="Dec03\Data.txt" />
+    <EmbeddedResource Include="Dec04\Data.txt" />
   </ItemGroup>
 
 </Project>
