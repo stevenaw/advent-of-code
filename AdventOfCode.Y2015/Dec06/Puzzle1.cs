@@ -15,21 +15,35 @@ namespace AdventOfCode.Y2015.Dec06
 
                 for (var y = op.Start.Y; y <= op.End.Y; y++)
                 {
-                    for (var x = op.Start.X; x <= op.End.X; x++)
+                    switch (op.Action)
                     {
-                        switch(op.Action)
-                        {
-                            case Action.On:
-                                grid[y * Rows + x] = true;
-                                break;
-                            case Action.Off:
-                                grid[y * Rows + x] = false;
-                                break;
-                            case Action.Toggle:
+                        case Action.On:
+                            Array.Fill(grid, true, y * Rows + op.Start.X, op.End.X - op.Start.X + 1);
+                            break;
+                        case Action.Off:
+                            Array.Fill(grid, false, y * Rows + op.Start.X, op.End.X - op.Start.X + 1);
+                            break;
+                        case Action.Toggle:
+                            for (var x = op.Start.X; x <= op.End.X; x++)
                                 grid[y * Rows + x] = !grid[y * Rows + x];
-                                break;
-                        }
+                            break;
                     }
+
+                    //for (var x = op.Start.X; x <= op.End.X; x++)
+                    //{
+                    //    switch(op.Action)
+                    //    {
+                    //        case Action.On:
+                    //            grid[y * Rows + x] = true;
+                    //            break;
+                    //        case Action.Off:
+                    //            grid[y * Rows + x] = false;
+                    //            break;
+                    //        case Action.Toggle:
+                    //            grid[y * Rows + x] = !grid[y * Rows + x];
+                    //            break;
+                    //    }
+                    //}
                 }
             }
 
