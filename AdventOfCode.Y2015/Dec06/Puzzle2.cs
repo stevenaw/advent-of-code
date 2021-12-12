@@ -16,15 +16,15 @@
                 {
                     for (var x = op.Start.X; x <= op.End.X; x++)
                     {
-                        switch (op.Action)
+                        switch (op.OpCode)
                         {
-                            case Action.On:
+                            case OpCode.On:
                                 grid[y * Rows + x]++;
                                 break;
-                            case Action.Off:
+                            case OpCode.Off:
                                 grid[y * Rows + x] = Math.Max(grid[y * Rows + x]-1, 0);
                                 break;
-                            case Action.Toggle:
+                            case OpCode.Toggle:
                                 grid[y * Rows + x] += 2;
                                 break;
                         }

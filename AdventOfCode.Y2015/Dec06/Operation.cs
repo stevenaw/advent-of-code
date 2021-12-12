@@ -4,23 +4,23 @@
     {
         public Coords Start { get; init; }
         public Coords End { get; init; }
-        public Action Action { get; init; }
+        public OpCode OpCode { get; init; }
 
         public static Operation Parse(ReadOnlySpan<char> line)
         {
-            Action action = default;
-            var map = new Dictionary<string, Action>()
-                {
-                    { "turn off", Action.Off },
-                    { "turn on", Action.On},
-                    { "toggle", Action.Toggle },
-                };
+            OpCode opCode = default;
+            var map = new Dictionary<string, OpCode>()
+            {
+                { "turn off", OpCode.Off },
+                { "turn on", OpCode.On},
+                { "toggle", OpCode.Toggle },
+            };
 
             foreach (var item in map)
             {
                 if (line.StartsWith(item.Key))
                 {
-                    action = item.Value;
+                    opCode = item.Value;
                     line = line.Slice(item.Key.Length + 1);
                     break;
                 }
@@ -34,7 +34,7 @@
             {
                 Start = start,
                 End = end,
-                Action = action
+                OpCode = opCode
             };
         }
     }

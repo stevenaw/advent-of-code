@@ -1,5 +1,4 @@
-﻿
-namespace AdventOfCode.Y2015.Dec06
+﻿namespace AdventOfCode.Y2015.Dec06
 {
     internal class Puzzle1 : AdventPuzzle
     {
@@ -15,15 +14,15 @@ namespace AdventOfCode.Y2015.Dec06
 
                 for (var y = op.Start.Y; y <= op.End.Y; y++)
                 {
-                    switch (op.Action)
+                    switch (op.OpCode)
                     {
-                        case Action.On:
+                        case OpCode.On:
                             Array.Fill(grid, true, y * Rows + op.Start.X, op.End.X - op.Start.X + 1);
                             break;
-                        case Action.Off:
+                        case OpCode.Off:
                             Array.Fill(grid, false, y * Rows + op.Start.X, op.End.X - op.Start.X + 1);
                             break;
-                        case Action.Toggle:
+                        case OpCode.Toggle:
                             for (var x = op.Start.X; x <= op.End.X; x++)
                                 grid[y * Rows + x] = !grid[y * Rows + x];
                             break;
@@ -31,15 +30,15 @@ namespace AdventOfCode.Y2015.Dec06
 
                     //for (var x = op.Start.X; x <= op.End.X; x++)
                     //{
-                    //    switch(op.Action)
+                    //    switch(op.OpCode)
                     //    {
-                    //        case Action.On:
+                    //        case OpCode.On:
                     //            grid[y * Rows + x] = true;
                     //            break;
-                    //        case Action.Off:
+                    //        case OpCode.Off:
                     //            grid[y * Rows + x] = false;
                     //            break;
-                    //        case Action.Toggle:
+                    //        case OpCode.Toggle:
                     //            grid[y * Rows + x] = !grid[y * Rows + x];
                     //            break;
                     //    }
