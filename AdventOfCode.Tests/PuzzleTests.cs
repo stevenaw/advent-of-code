@@ -17,6 +17,7 @@ namespace AdventOfCode.Tests
         [TestCase(2015, 5, 2, ExpectedResult = 69)]
         [TestCase(2015, 6, 1, ExpectedResult = 400410)]
         [TestCase(2015, 6, 2, ExpectedResult = 15343601)]
+        [TestCase(2015, 7, 1, ExpectedResult = 46065)]
 
         [TestCase(2020, 1, 1, ExpectedResult = 878724)]
         [TestCase(2020, 1, 2, ExpectedResult = 201251610)]
