@@ -6,7 +6,7 @@
         {
             var input = lines.First();
 
-            var result = Processor.Process(input, 40);
+            var result = LookSaySequence.Generate(input, 40);
 
             return result.Length;
         }

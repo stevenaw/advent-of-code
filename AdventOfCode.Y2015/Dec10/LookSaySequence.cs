@@ -1,8 +1,8 @@
 ﻿namespace AdventOfCode.Y2015.Dec10
 {
-    internal static class Processor
+    internal static class LookSaySequence
     {
-        public static string Process(string input, int cycles)
+        public static string Generate(string input, int cycles)
         {
             if (string.IsNullOrEmpty(input))
                 return string.Empty;
