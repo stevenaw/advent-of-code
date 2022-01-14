@@ -7,14 +7,14 @@
             if (string.IsNullOrEmpty(input))
                 return string.Empty;
 
-            var current = input.Select(o => o - '0').ToList();
+            var current = input.Select(o => (byte)(o - '0')).ToList();
 
             for (int i = 0; i < cycles; i++)
             {
-                var next = new List<int>(current.Count);
+                // Each sequence will be around 1.31 times longer than previous (Conway's constant)
+                var next = new List<byte>((int)Math.Ceiling(current.Count * 1.31));
 
-                // iterate over, count consecutive items, control break on difference
-                var consecutives = 1;
+                byte consecutives = 1;
                 for (var j = 1; j < current.Count; j++)
                 {
                     if (current[j] != current[j - 1])
