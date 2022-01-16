@@ -1,12 +1,12 @@
 ﻿namespace AdventOfCode.Y2015.Dec11
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle
     {
         protected override long Solve(IEnumerable<string> lines)
         {
             var input = lines.First();
 
-            var result = PasswordGenerator.GenerateNextPasswords(input, 1);
+            var result = PasswordGenerator.GenerateNextPasswords(input, 2);
 
             Console.WriteLine(result.Last());
 
