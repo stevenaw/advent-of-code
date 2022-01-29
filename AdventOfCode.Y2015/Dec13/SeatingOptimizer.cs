@@ -27,6 +27,7 @@
 
             static int CalculateHappiness(string a, string b, Neighbour[] weights)
             {
+                // O(n^2), not great
                 var weight = weights.First(o => (o.PersonA == a && o.PersonB == b) || (o.PersonA == b && o.PersonB == a));
                 return weight.DeltaHappiness;
             }
