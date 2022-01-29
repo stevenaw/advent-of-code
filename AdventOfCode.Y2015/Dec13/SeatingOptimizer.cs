@@ -9,28 +9,26 @@
                 .Distinct()
                 .ToArray();
 
+            var weightLookup = weights.ToDictionary(o => GetHashCode(o), o => o.DeltaHappiness);
+
             var allCombinations = Combinatorial.GetPermutations(distinctNames);
-            var optimal = allCombinations.Select(o => CalculateSeatingHappiness(o, weights)).Max();
+            var optimal = allCombinations.Select(o => CalculateSeatingHappiness(o, weightLookup)).Max();
 
             return optimal;
         }
 
-        private static int CalculateSeatingHappiness(string[] seating, Neighbour[] weights)
+        private static int CalculateSeatingHappiness(string[] seating, Dictionary<int,int> weights)
         {
             var happiness = 0;
             for (var i = 0; i < seating.Length - 1; i++)
-                happiness += CalculateHappiness(seating[i], seating[i + 1], weights);
+                happiness += weights[GetHashCode(seating[i], seating[i + 1])];
 
-            happiness += CalculateHappiness(seating[seating.Length - 1], seating[0], weights);
+            happiness += weights[GetHashCode(seating[0], seating[seating.Length - 1])];
 
             return happiness;
-
-            static int CalculateHappiness(string a, string b, Neighbour[] weights)
-            {
-                // O(n^2), not great
-                var weight = weights.First(o => (o.PersonA == a && o.PersonB == b) || (o.PersonA == b && o.PersonB == a));
-                return weight.DeltaHappiness;
-            }
         }
+
+        private static int GetHashCode(Neighbour n) => GetHashCode(n.PersonA, n.PersonB);
+        private static int GetHashCode(string a, string b) => a.GetHashCode() ^ b.GetHashCode();
     }
 }
