@@ -35,6 +35,7 @@ namespace AdventOfCode.Tests
         [TestCase(2015, 14, 2, ExpectedResult = 1084)]
 
         [TestCase(2016, 1, 1, ExpectedResult = 301)]
+        [TestCase(2016, 1, 2, ExpectedResult = 130)]
 
         [TestCase(2020, 1, 1, ExpectedResult = 878724)]
         [TestCase(2020, 1, 2, ExpectedResult = 201251610)]
@@ -75,11 +76,6 @@ namespace AdventOfCode.Tests
         [TestCase(2020, 18, 2, ExpectedResult = 216975281211165)]
         [TestCase(2020, 19, 1, ExpectedResult = 285)]
         public long VerifyResults(int year, int day, int puzzleNumber)
-        {
-            var puzzle = AdventPuzzle.GetPuzzle(year, day, puzzleNumber);
-            var result = puzzle.Solve();
-
-            return result;
-        }
+            => AdventPuzzle.Solve(year, day, puzzleNumber);
     }
 }

@@ -5,9 +5,7 @@
         static void Main(string[] args)
         {
             var (year, day, puzzleNumber) = ParseArguments(args);
-
-            var puzzle = AdventPuzzle.GetPuzzle(year, day, puzzleNumber);
-            var result = puzzle.Solve();
+            var result = AdventPuzzle.Solve(year, day, puzzleNumber);
 
             Console.WriteLine($"Result: {result}");
         }

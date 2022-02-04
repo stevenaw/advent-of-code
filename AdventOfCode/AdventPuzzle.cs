@@ -4,7 +4,14 @@ namespace AdventOfCode
 {
     public abstract class AdventPuzzle
     {
-        public static AdventPuzzle GetPuzzle(int year, int day, int puzzleNumber)
+        public static long Solve(int year, int day, int puzzleNumber)
+        {
+            var puzzle = GetPuzzle(year, day, puzzleNumber);
+            var result = puzzle.Solve();
+            return result;
+        }
+
+        private static AdventPuzzle GetPuzzle(int year, int day, int puzzleNumber)
         {
             var assemblyName = $"{typeof(AdventPuzzle).Namespace}.Y{year}";
             var typeName = $"{assemblyName}.Dec{day:00}.Puzzle{puzzleNumber}";
@@ -24,7 +31,7 @@ namespace AdventOfCode
             return (AdventPuzzle)puzzle;
         }
 
-        public long Solve()
+        internal long Solve()
         {
             var ns = GetType().Namespace!;
             var asm = GetType().Assembly;
