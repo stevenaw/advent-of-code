@@ -16,11 +16,8 @@ namespace AdventOfCode
             var assemblyName = $"{typeof(AdventPuzzle).Namespace}.Y{year}";
             var typeName = $"{assemblyName}.Dec{day:00}.Puzzle{puzzleNumber}";
 
-            var asm = Assembly.Load(assemblyName);
-            if (asm is null)
-                throw new InvalidOperationException("Could not find the assembly");
-
-            var type = asm.GetType(typeName);
+            var qualifiedName = Assembly.CreateQualifiedName(assemblyName, typeName);
+            var type = Type.GetType(qualifiedName);
             if (type is null)
                 throw new InvalidOperationException("Could not find the puzzle type");
 
@@ -50,7 +47,7 @@ namespace AdventOfCode
 
             // Remove 0-width line break from start
             if (chars[0] == 65279)
-                chars = chars.Slice(1);
+                chars = chars[1..];
 
             var eol = Environment.NewLine;
             var nextDelim = chars.IndexOf(eol);
@@ -58,10 +55,10 @@ namespace AdventOfCode
             var lines = new List<string>();
             while (!chars.IsEmpty && nextDelim != -1)
             {
-                var t = chars.Slice(0, nextDelim);
+                var t = chars[..nextDelim];
                 lines.Add(t.ToString());
 
-                chars = chars.Slice(t.Length + eol.Length);
+                chars = chars[(t.Length + eol.Length)..];
                 nextDelim = chars.IndexOf(eol);
             }
 

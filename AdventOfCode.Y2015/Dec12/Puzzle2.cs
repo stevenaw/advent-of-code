@@ -64,7 +64,7 @@ namespace AdventOfCode.Y2015.Dec12
 
                 result.Add(int.Parse(s.Slice(startIdx, len)));
 
-                s = s.Slice(startIdx + len);
+                s = s[(startIdx + len)..];
                 startIdx = s.IndexOfAny(digits);
             }
 

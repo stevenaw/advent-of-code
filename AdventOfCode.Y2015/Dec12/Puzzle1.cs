@@ -31,7 +31,7 @@
 
                 result.Add(int.Parse(s.Slice(startIdx, len)));
 
-                s = s.Slice(startIdx + len);
+                s = s[(startIdx + len)..];
                 startIdx = s.IndexOfAny(digits);
             }
 

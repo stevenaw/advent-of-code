@@ -9,11 +9,11 @@
             var nextDelim = line.IndexOf(delim);
             while (!line.IsEmpty && nextDelim != -1)
             {
-                var t = line.Slice(0, nextDelim);
+                var t = line[..nextDelim];
                 if (Int32.TryParse(t, out var num))
                     ids.Add(num);
 
-                line = line.Slice(t.Length + 1);
+                line = line[(t.Length + 1)..];
                 nextDelim = line.IndexOf(delim);
             }
 
