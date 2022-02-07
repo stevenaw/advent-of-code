@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdventOfCode.Y2016.Dec02
+﻿namespace AdventOfCode.Y2016.Dec02
 {
     internal class Puzzle2 : AdventPuzzle
     {
@@ -40,16 +34,11 @@ namespace AdventOfCode.Y2016.Dec02
         {
             var count = 0;
 
-            for(var i = 0; i < _allowed.Length; i++)
-            {
-                if (_allowed[i])
+            while (current >= 0)
+                if (_allowed[current--])
                     count++;
 
-                if (i == current)
-                    return count < 10 ? (char)(count + '0') : (char)((count-10) + 'A');
-            }
-
-            throw new InvalidOperationException("Could not find");
+            return count < 10 ? (char)(count + '0') : (char)((count - 10) + 'A');
         }
 
         private static int GetNextPosition(int current, char move)
