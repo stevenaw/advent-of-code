@@ -1,32 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdventOfCode.Y2016.Dec03
+﻿namespace AdventOfCode.Y2016.Dec03
 {
     internal class Puzzle2 : AdventPuzzle
     {
         protected override long Solve(IEnumerable<string> lines)
         {
-            var items = lines.Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray()).ToArray();
             var count = 0L;
 
-            for (int i = 0; i < 3; i++)
+            foreach(var batch in lines.Chunk(3))
             {
-                for (int j = 2; j < items.Length; j+=3)
-                {
-                    var shape = (a: items[j][i], b: items[j-1][i], c: items[j-2][i]);
+                var itemA = InputParser.Parse(batch[0]);
+                var itemB = InputParser.Parse(batch[1]);
+                var itemC = InputParser.Parse(batch[2]);
 
-                    if (shape.a + shape.b > shape.c
-                    && shape.c + shape.b > shape.a
-                    && shape.a + shape.c > shape.b)
-                        count++;
-                }
+                if (IsValidTriangle(itemA.a, itemB.a, itemC.a))
+                    count++;
+                if (IsValidTriangle(itemA.b, itemB.b, itemC.b))
+                    count++;
+                if (IsValidTriangle(itemA.c, itemB.c, itemC.c))
+                    count++;
             }
 
             return count;
         }
+
+        private static bool IsValidTriangle(int a, int b, int c) =>
+            a + b > c
+            && c + b > a
+            && a + c > b;
     }
 }
