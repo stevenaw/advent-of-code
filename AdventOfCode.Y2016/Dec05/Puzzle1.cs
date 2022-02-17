@@ -1,7 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-
-namespace AdventOfCode.Y2016.Dec05
+﻿namespace AdventOfCode.Y2016.Dec05
 {
     internal class Puzzle1 : AdventPuzzle
     {
