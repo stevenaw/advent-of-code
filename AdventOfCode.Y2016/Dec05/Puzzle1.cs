@@ -24,7 +24,7 @@ namespace AdventOfCode.Y2016.Dec05
                 password[i] = hash[5];
             }
 
-            return TypeEncoder.EncodeAsLong(password.ToString());
+            return TypeEncoder.EncodeAsLong(password);
         }
     }
 }

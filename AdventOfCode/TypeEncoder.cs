@@ -2,7 +2,9 @@
 {
     public class TypeEncoder
     {
-        public static long EncodeAsLong(string s)
+        public static long EncodeAsLong(string s) => EncodeAsLong(s.AsSpan());
+
+        public static long EncodeAsLong(ReadOnlySpan<char> s)
         {
             var result = 0L;
             var idx = s.Length;
