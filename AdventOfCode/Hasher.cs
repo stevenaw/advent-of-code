@@ -1,9 +1,9 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace AdventOfCode.Y2016.Dec05
+namespace AdventOfCode
 {
-    internal static class Hasher
+    public static class Hasher
     {
         public static string HashAsHexString(string prefix, int suffix)
         {
