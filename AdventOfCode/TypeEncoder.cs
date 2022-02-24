@@ -32,14 +32,14 @@
                 if (!Char.IsLetter(c))
                     throw new InvalidOperationException("Only a-z letters are supported");
 
-                var bits = Char.ToLower(c) - 'a';
+                long bits = Char.ToLower(c) - 'a';
                 if (bits < 0 || bits >= 26)
                     throw new InvalidOperationException("Only a-z letters are supported");
 
                 if (Char.IsUpper(c))
-                    bits |= 32;
+                    bits |= 0x20;
 
-                result |= (bits & 63) << (--idx * 6);
+                result |= (bits & 0x3F) << (--idx * 6);
             }
 
             return result;
