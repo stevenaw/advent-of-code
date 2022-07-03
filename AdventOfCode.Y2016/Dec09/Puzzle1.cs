@@ -35,7 +35,7 @@ namespace AdventOfCode.Y2016.Dec09
             return result.Length;
         }
 
-        private int ProcessExpansion(ReadOnlySpan<char> chars, out string expansion)
+        private static int ProcessExpansion(ReadOnlySpan<char> chars, out string expansion)
         {
             int processedCount = 0;
             var delim = chars.IndexOf('x');
@@ -48,19 +48,10 @@ namespace AdventOfCode.Y2016.Dec09
             chars = chars.Slice(delim + 1);
             processedCount += delim + 1;
 
-            var toExpand = new char[lettersToExpand];
-            var toExpandSize = 0;
-            while (!chars.IsEmpty)
-            {
-                toExpand[toExpandSize++] = chars[0];
-                chars = chars.Slice(1);
-                processedCount++;
+            var toExpand = chars.Slice(0, lettersToExpand);
+            processedCount += lettersToExpand;
 
-                if (toExpandSize == lettersToExpand)
-                    break;
-            }
-
-            expansion = String.Create(numberOfExpansions * toExpand.Length, toExpand, (buffer, state) =>
+            expansion = String.Create(numberOfExpansions * toExpand.Length, toExpand.ToString(), (buffer, state) =>
             {
                 var j = 0;
                 for (var i = 0; i < numberOfExpansions; i++)
