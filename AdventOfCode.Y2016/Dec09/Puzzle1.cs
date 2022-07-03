@@ -26,41 +26,45 @@ namespace AdventOfCode.Y2016.Dec09
                         line = line.Slice(nextExpansion);
                     }
 
-                    var processedLength = ProcessExpansion(line, out var expansion);
+                    var marker = ParseMarker(line, out var markerLength);
+                    var originalCharsProcessed = Expand(line.Slice(markerLength), marker, out var expansion);
                     result.Append(expansion);
-                    line = line.Slice(processedLength);
+                    line = line.Slice(markerLength + originalCharsProcessed);
                 }
             }
 
             return result.Length;
         }
 
-        private static int ProcessExpansion(ReadOnlySpan<char> chars, out string expansion)
+        private static int Expand(ReadOnlySpan<char> chars, Marker marker, out string expansion)
         {
-            int processedCount = 0;
-            var delim = chars.IndexOf('x');
-            var lettersToExpand = int.Parse(chars[1..delim]);
-            chars = chars.Slice(delim);
-            processedCount += delim;
-
-            delim = chars.IndexOf(')');
-            var numberOfExpansions = int.Parse(chars[1..delim]);
-            chars = chars.Slice(delim + 1);
-            processedCount += delim + 1;
-
-            var toExpand = chars.Slice(0, lettersToExpand);
-            processedCount += lettersToExpand;
-
-            expansion = String.Create(numberOfExpansions * toExpand.Length, toExpand.ToString(), (buffer, state) =>
+            var toExpand = chars.Slice(0, marker.LetterCount);
+            expansion = String.Create(marker.Duplications * toExpand.Length, toExpand.ToString(), (buffer, state) =>
             {
                 var j = 0;
-                for (var i = 0; i < numberOfExpansions; i++)
+                for (var i = 0; i < marker.Duplications; i++)
                 {
                     state.CopyTo(buffer.Slice(j, state.Length));
                     j += state.Length;
                 }
             });
-            return processedCount;
+
+            return marker.LetterCount;
         }
+
+        private static Marker ParseMarker(ReadOnlySpan<char> chars, out int markerLength)
+        {
+            var delim = chars.IndexOf('x');
+            var lettersToExpand = int.Parse(chars[1..delim]);
+
+            var end = chars.IndexOf(')');
+            var numberOfExpansions = int.Parse(chars[(delim + 1)..end]);
+
+            markerLength = end + 1;
+
+            return new Marker(LetterCount: lettersToExpand, Duplications: numberOfExpansions);
+        }
+
+        private readonly record struct Marker(int LetterCount, int Duplications);
     }
 }
