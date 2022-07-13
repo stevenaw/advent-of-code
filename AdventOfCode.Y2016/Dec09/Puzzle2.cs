@@ -9,7 +9,7 @@
 
         private static long CalculateExpandedLength(ReadOnlySpan<char> line, out int charsProcessed)
         {
-            var resultLength = 0L;
+            var result = 0L;
             var pendingCharsProcessed = 0;
 
             while (!line.IsEmpty)
@@ -18,14 +18,14 @@
                 if (nextExpansion == -1)
                 {
                     pendingCharsProcessed = line.Length;
-                    resultLength += line.Length;
+                    result += line.Length;
                     line = ReadOnlySpan<char>.Empty;
                 }
                 else
                 {
                     // Consume any chars ahead of '(' if they exist
                     // If 0, these are noops
-                    resultLength += nextExpansion;
+                    result += nextExpansion;
                     pendingCharsProcessed += nextExpansion;
                     line = line.Slice(nextExpansion);
 
@@ -38,13 +38,13 @@
                     var toExpand = line.Slice(0, marker.LetterCount);
                     var expandedLength = CalculateExpandedLength(toExpand, out var subCharsProcessed);
                     line = line.Slice(subCharsProcessed);
-                    resultLength += expandedLength * marker.Duplications;
+                    result += expandedLength * marker.Duplications;
                     pendingCharsProcessed += subCharsProcessed;
                 }
             }
 
             charsProcessed = pendingCharsProcessed;
-            return resultLength;
+            return result;
         }
 
         private static Marker ParseMarker(ReadOnlySpan<char> chars, out int markerLength)
