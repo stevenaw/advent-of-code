@@ -29,13 +29,10 @@
 
             foreach (var c in s)
             {
-                if (!Char.IsLetter(c))
+                if (!Char.IsAsciiLetter(c))
                     throw new InvalidOperationException("Only a-z letters are supported");
 
                 long bits = Char.ToLower(c) - 'a';
-                if (bits < 0 || bits >= 26)
-                    throw new InvalidOperationException("Only a-z letters are supported");
-
                 if (Char.IsUpper(c))
                     bits |= 0x20;
 

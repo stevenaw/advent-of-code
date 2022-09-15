@@ -2,13 +2,14 @@
 
 namespace AdventOfCode.Y2016.Dec04
 {
-    public record struct InputRecord(string EncryptedName, int SectorId, string Checksum)
+    public partial record struct InputRecord(string EncryptedName, int SectorId, string Checksum)
     {
-        private static readonly Regex Parser = new Regex(@"^((\w+\-)+)(\d+)\[(\w{5})\]$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        [RegexGenerator(@"^((\w+\-)+)(\d+)\[(\w{5})\]$", RegexOptions.IgnoreCase)]
+        private static partial Regex Parser();
 
         public static InputRecord Parse(string line)
         {
-            var matches = Parser.Match(line).Groups;
+            var matches = Parser().Match(line).Groups;
             return new InputRecord(
                 matches[1].Value.TrimEnd('-'),
                 int.Parse(matches[3].ValueSpan),

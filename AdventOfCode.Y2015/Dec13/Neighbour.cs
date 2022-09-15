@@ -2,13 +2,14 @@
 
 namespace AdventOfCode.Y2015.Dec13
 {
-    record Neighbour(string PersonA, string PersonB, int DeltaHappiness)
+    partial record Neighbour(string PersonA, string PersonB, int DeltaHappiness)
     {
-        private static readonly Regex Parser = new Regex(@"(\w+) would (gain|lose) (\d+) happiness units by sitting next to (\w+).", RegexOptions.Compiled);
+        [RegexGenerator(@"(\w+) would (gain|lose) (\d+) happiness units by sitting next to (\w+).")]
+        private static partial Regex Parser();
 
         public static Neighbour Parse(string s)
         {
-            var matches = Parser.Match(s).Groups;
+            var matches = Parser().Match(s).Groups;
             var netGain = matches[2].Value == "gain" ? 1 : -1;
 
             return new Neighbour(
