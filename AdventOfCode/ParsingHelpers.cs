@@ -22,5 +22,15 @@
 
             return ids;
         }
+
+        public static int[] ParseIntegers(ReadOnlySpan<char> line)
+        {
+            var ids = new int[line.Length];
+
+            for (var i = 0; i < line.Length; i++)
+                ids[i] = line[i] - '0';
+
+            return ids;
+        }
     }
 }
