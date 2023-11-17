@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Y2017.Dec04
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle
     {
         protected override long Solve(IEnumerable<string> lines)
         {
@@ -9,7 +9,15 @@
             foreach(var line in lines)
             {
                 var tokens = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                var distinctCount = tokens.Distinct(StringComparer.OrdinalIgnoreCase).Count();
+
+                var distinctCount = tokens.Select(x => string.Create(x.Length, x, (buffer, state) =>
+                {
+                    var chars = state.ToCharArray();
+                    Array.Sort(chars);
+                    chars.CopyTo(buffer);
+                }))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .Count();
 
                 if (distinctCount == tokens.Length)
                 {
