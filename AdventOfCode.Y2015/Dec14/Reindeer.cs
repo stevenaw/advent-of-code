@@ -4,7 +4,7 @@ namespace AdventOfCode.Y2015.Dec14
 {
     partial record Reindeer(string Name, int Speed, int Stamina, int Downtime)
     {
-        [RegexGenerator(@"(\w+) can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds.")]
+        [GeneratedRegex(@"(\w+) can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds.")]
         private static partial Regex Parser();
 
         public static Reindeer Parse(string s)

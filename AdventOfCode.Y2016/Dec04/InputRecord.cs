@@ -4,7 +4,7 @@ namespace AdventOfCode.Y2016.Dec04
 {
     public partial record struct InputRecord(string EncryptedName, int SectorId, string Checksum)
     {
-        [RegexGenerator(@"^((\w+\-)+)(\d+)\[(\w{5})\]$", RegexOptions.IgnoreCase)]
+        [GeneratedRegex(@"^((\w+\-)+)(\d+)\[(\w{5})\]$", RegexOptions.IgnoreCase)]
         private static partial Regex Parser();
 
         public static InputRecord Parse(string line)
@@ -17,7 +17,7 @@ namespace AdventOfCode.Y2016.Dec04
             );
         }
 
-        public bool IsValid()
+        public readonly bool IsValid()
         {
             var charCounts = EncryptedName.Where(e => e != '-').GroupBy(e => e).ToDictionary(e => e.Key, e => e.Count());
             var top5 = charCounts.OrderByDescending(o => o.Value).ThenBy(o => o.Key).Take(5).Select(o => o.Key).ToArray();
@@ -25,7 +25,7 @@ namespace AdventOfCode.Y2016.Dec04
             return Checksum.AsSpan().SequenceEqual(top5);
         }
 
-        public string Decrypt()
+        public readonly string Decrypt()
         {
             return string.Create(EncryptedName.Length, this, (buffer, state) =>
             {

@@ -4,7 +4,7 @@ namespace AdventOfCode.Y2015.Dec13
 {
     partial record Neighbour(string PersonA, string PersonB, int DeltaHappiness)
     {
-        [RegexGenerator(@"(\w+) would (gain|lose) (\d+) happiness units by sitting next to (\w+).")]
+        [GeneratedRegex(@"(\w+) would (gain|lose) (\d+) happiness units by sitting next to (\w+).")]
         private static partial Regex Parser();
 
         public static Neighbour Parse(string s)
