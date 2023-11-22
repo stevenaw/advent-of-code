@@ -2,7 +2,7 @@
 
 namespace AdventOfCode.Y2017.Dec06
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle
     {
         protected override long Solve(IEnumerable<string> lines)
         {
@@ -14,7 +14,7 @@ namespace AdventOfCode.Y2017.Dec06
             for (var i = 0; i < input.Length; i++)
                 vals[i] = byte.Parse(input[i]);
             
-            var history = new HashSet<(ulong, ulong)>(32);
+            var history = new Dictionary<(ulong, ulong), int>(32);
 
 
             var stepCount = 0;
@@ -27,9 +27,11 @@ namespace AdventOfCode.Y2017.Dec06
                 Redistribute(vals);
 
                 state = SnapshotState(vals);
-            } while (history.Add(state));
+            } while (history.TryAdd(state, stepCount));
 
-            return stepCount;
+            var previousOccurence = history[state];
+
+            return stepCount - previousOccurence;
         }
 
         private static void Redistribute(Span<byte> vals)
