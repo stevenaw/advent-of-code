@@ -6,13 +6,7 @@ namespace AdventOfCode.Y2017.Dec07
     {
         protected override long Solve(IEnumerable<string> lines)
         {
-            var nodes = new Dictionary<string, Node>();
-
-            foreach (var line in lines)
-            {
-                var node = Node.Parse(line);
-                nodes[node.Name] = node;
-            }
+            var nodes = lines.Select(Node.Parse).ToDictionary(o => o.Name);
 
             foreach(var nodeName in nodes.Keys)
             {
@@ -25,7 +19,7 @@ namespace AdventOfCode.Y2017.Dec07
                 }
             }
 
-            return 0;
+            throw new InvalidOperationException("The answer couldn't be found.");
         }
 
         private record Node(string Name, int Weight, List<string> Children)
