@@ -14,7 +14,7 @@
             for (var i = 0; i < int.MaxValue; i++)
             {
                 var str = Hasher.HashAsHexString(_seed, i);
-                if (str.StartsWith(startsWith))
+                if (str.StartsWith(startsWith, StringComparison.Ordinal))
                     return i;
             }
 
