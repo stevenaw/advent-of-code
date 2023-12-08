@@ -1,13 +1,18 @@
 ﻿namespace AdventOfCode.Y2017.Dec07
 {
-    internal record Node(string Name, int Weight, List<Node> Children)
+    internal record TreeNode(string Name, int Weight, List<TreeNode> Children);
+
+    internal readonly ref struct Tree
     {
-        public static Node ParseTree(IEnumerable<string> lines)
+        public TreeNode Root { get; init; }
+        public List<TreeNode> AllNodes { get; init; }
+
+        public static Tree Parse(IEnumerable<string> lines)
         {
+            var rootCandidates = new List<TreeNode>();
+            var nodes = new List<TreeNode>();
             // TODO: This could be better as parallel arrays
-            var rootCandidates = new List<Node>();
-            var nodes = new List<Node>();
-            var allNodes = new Dictionary<string, Node>();
+            var allNodes = new Dictionary<string, TreeNode>();
             var allChildren = new Dictionary<string, List<string>>();
 
             foreach (var line in lines)
@@ -22,7 +27,7 @@
                     children.Add(items[i].Trim(','));
 
 
-                var node = new Node(name, weight, new List<Node>());
+                var node = new TreeNode(name, weight, new());
 
                 nodes.Add(node);
                 allNodes.Add(node.Name, node);
@@ -30,7 +35,7 @@
                 rootCandidates.Add(node);
             }
 
-            foreach(var node in nodes)
+            foreach (var node in nodes)
             {
                 foreach (var childName in allChildren[node.Name])
                 {
@@ -40,8 +45,12 @@
                     rootCandidates.Remove(child);
                 }
             }
-            
-            return rootCandidates[0];
+
+            return new Tree
+            {
+                Root = rootCandidates[0],
+                AllNodes = nodes
+            };
         }
     }
 }

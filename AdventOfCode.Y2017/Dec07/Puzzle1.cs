@@ -6,8 +6,8 @@ namespace AdventOfCode.Y2017.Dec07
     {
         protected override long Solve(IEnumerable<string> lines)
         {
-            var root = Node.ParseTree(lines);
-            return TypeEncoder.EncodeLettersAsLong(root.Name);
+            var tree = Tree.Parse(lines);
+            return TypeEncoder.EncodeLettersAsLong(tree.Root.Name);
         }
     }
 }
