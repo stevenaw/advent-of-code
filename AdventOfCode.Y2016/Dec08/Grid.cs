@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdventOfCode.Y2016.Dec08
+﻿namespace AdventOfCode.Y2016.Dec08
 {
     internal class Grid
     {

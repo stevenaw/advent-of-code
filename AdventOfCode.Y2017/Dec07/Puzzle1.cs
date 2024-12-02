@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace AdventOfCode.Y2017.Dec07
+﻿namespace AdventOfCode.Y2017.Dec07
 {
     internal class Puzzle1 : AdventPuzzle
     {
