@@ -2,10 +2,11 @@
 
 namespace AdventOfCode.Y2017.Dec08
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle
     {
-        private static readonly Dictionary<string, int> registers = new ();
+        private static readonly Dictionary<string, int> registers = new();
         private static readonly Dictionary<string, int>.AlternateLookup<ReadOnlySpan<char>> registersLookup = registers.GetAlternateLookup<ReadOnlySpan<char>>();
+        private static int maximumValue = 0;
 
         protected override long Solve(IEnumerable<string> lines)
         {
@@ -15,15 +16,15 @@ namespace AdventOfCode.Y2017.Dec08
 
                 // g dec 231 if bfx > -10
                 var idx = s.LastIndexOf(' ');
-                var amount = s.Slice(idx+1);
+                var amount = s.Slice(idx + 1);
 
                 s = s.Slice(0, idx);
                 idx = s.LastIndexOf(' ');
-                var op = s.Slice(idx+1);
+                var op = s.Slice(idx + 1);
 
                 s = s.Slice(0, idx);
                 idx = s.LastIndexOf(' ');
-                var register = s.Slice(idx+1);
+                var register = s.Slice(idx + 1);
 
                 if (EvaluateExpression(register, op, amount) == 0)
                     continue;
@@ -40,10 +41,11 @@ namespace AdventOfCode.Y2017.Dec08
                 idx = s.IndexOf(' ');
                 amount = s[..idx];
 
-                EvaluateExpression(register, op, amount);
+                var result = EvaluateExpression(register, op, amount);
+                maximumValue = Math.Max(maximumValue, result);
             }
 
-            return registers.Values.Max();
+            return maximumValue;
         }
 
         static int EvaluateExpression(ReadOnlySpan<char> register, ReadOnlySpan<char> op, ReadOnlySpan<char> rValue)
