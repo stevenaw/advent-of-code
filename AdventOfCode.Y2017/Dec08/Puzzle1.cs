@@ -1,13 +1,14 @@
-﻿namespace AdventOfCode.Y2017.Dec08
+﻿using System.Runtime.InteropServices;
+
+namespace AdventOfCode.Y2017.Dec08
 {
     internal class Puzzle1 : AdventPuzzle
     {
-        static Dictionary<string, int> registers = new ();
-        static Dictionary<string, int>.AlternateLookup<ReadOnlySpan<char>> registersLookup = registers.GetAlternateLookup<ReadOnlySpan<char>>();
+        private static readonly Dictionary<string, int> registers = new ();
+        private static readonly Dictionary<string, int>.AlternateLookup<ReadOnlySpan<char>> registersLookup = registers.GetAlternateLookup<ReadOnlySpan<char>>();
 
         protected override long Solve(IEnumerable<string> lines)
         {
-
             foreach (var line in lines)
             {
                 var s = line.AsSpan();
@@ -24,18 +25,8 @@
                 idx = s.LastIndexOf(' ');
                 var register = s.Slice(idx+1);
 
-
-                int.TryParse(amount, out var amountValue);
-                if (!registersLookup.TryGetValue(register, out var registerValue))
-                {
-                    registersLookup[register] = registerValue = 0;
-                }
-
-
-                if (!CheckCondition(registerValue, op, amountValue))
+                if (EvaluateExpression(register, op, amount) == 0)
                     continue;
-
-
 
                 // g dec 231 if bfx > -10
                 idx = s.IndexOf(' ');
@@ -49,23 +40,7 @@
                 idx = s.IndexOf(' ');
                 amount = s[..idx];
 
-
-                int.TryParse(amount, out amountValue);
-                if (!registersLookup.TryGetValue(register, out registerValue))
-                {
-                    registersLookup[register] = registerValue = 0;
-                }
-
-                switch (op)
-                {
-                    case "inc":
-                        registersLookup[register] = registerValue + amountValue;
-                        break;
-
-                    case "dec":
-                        registersLookup[register] = registerValue - amountValue;
-                        break;
-                }
+                EvaluateExpression(register, op, amount);
             }
 
 
@@ -73,26 +48,38 @@
 
 
 
-            static bool CheckCondition(int a, ReadOnlySpan<char> op, int b)
+            static int EvaluateExpression(ReadOnlySpan<char> register, ReadOnlySpan<char> op, ReadOnlySpan<char> rValue)
             {
+                int.TryParse(rValue, out var amountValue);
+                ref var registerValue = ref CollectionsMarshal.GetValueRefOrAddDefault(registersLookup, register, out _);
+
                 switch (op)
                 {
                     case ">":
-                        return a > b;
+                        return registerValue > amountValue ? 1 : 0;
                     case ">=":
-                        return a >= b;
+                        return registerValue >= amountValue ? 1 : 0;
                     case "<":
-                        return a < b;
+                        return registerValue < amountValue ? 1 : 0;
                     case "<=":
-                        return a <= b;
+                        return registerValue <= amountValue ? 1 : 0;
                     case "!=":
-                        return a != b;
+                        return registerValue != amountValue ? 1 : 0;
                     case "==":
-                        return a == b;
+                        return registerValue == amountValue ? 1 : 0;
+
+
+                    case "inc":
+                        registersLookup[register] = registerValue + amountValue;
+                        return registerValue + amountValue;
+
+                    case "dec":
+                        registersLookup[register] = registerValue - amountValue;
+                        return registerValue - amountValue;
                 }
 
                 Console.WriteLine("Unexpected operator " + op.ToString());
-                return false;
+                return 0;
             }
         }
     }
