@@ -2,7 +2,7 @@
   "profiles": {
     "AdventOfCode2020": {
       "commandName": "Project",
-      "commandLineArgs": "--year 2017 --day 8 --puzzle 2"
+      "commandLineArgs": "--year 2017 --day 9 --puzzle 1"
     }
   }
 }
