@@ -2,16 +2,29 @@
 
 namespace AdventOfCode
 {
-    public abstract class AdventPuzzle
+    public abstract class AdventPuzzle : AdventPuzzle<long>
     {
-        public static long Solve(int year, int day, int puzzleNumber)
+        public static TResult Solve<TResult>(int year, int day, int puzzleNumber)
         {
-            var puzzle = GetPuzzle(year, day, puzzleNumber);
+            var puzzle = GetPuzzle<TResult>(year, day, puzzleNumber);
             var result = puzzle.Solve();
             return result;
         }
 
-        private static AdventPuzzle GetPuzzle(int year, int day, int puzzleNumber)
+        public static string Solve(int year, int day, int puzzleNumber)
+        {
+            var type = GetPuzzleType(year, day, puzzleNumber);
+            var method = type.GetMethod(nameof(AdventPuzzle.Solve),
+                BindingFlags.NonPublic | BindingFlags.Instance,
+                []);
+
+            var puzzle = Activator.CreateInstance(type);
+            var result = method!.Invoke(puzzle, null);
+
+            return result?.ToString() ?? "";
+        }
+
+        private static Type GetPuzzleType(int year, int day, int puzzleNumber)
         {
             var assemblyName = $"{typeof(AdventPuzzle).Namespace}.Y{year}";
             var typeName = $"{assemblyName}.Dec{day:00}.Puzzle{puzzleNumber}";
@@ -21,14 +34,27 @@ namespace AdventOfCode
             if (type is null)
                 throw new InvalidOperationException("Could not find the puzzle type");
 
+            return type;
+        }
+
+        private static AdventPuzzle<TResult> GetPuzzle<TResult>(int year, int day, int puzzleNumber)
+        {
+            var type = GetPuzzleType(year, day, puzzleNumber);
+
             var puzzle = Activator.CreateInstance(type);
             if (puzzle is null)
                 throw new InvalidOperationException("Could not create the puzzle");
 
-            return (AdventPuzzle)puzzle;
+            return (AdventPuzzle<TResult>)puzzle;
         }
 
-        internal long Solve()
+    }
+
+    public abstract class AdventPuzzle<TResult>
+    {
+        protected abstract TResult Solve(IEnumerable<string> lines);
+
+        internal TResult Solve()
         {
             var ns = GetType().Namespace!;
             var asm = GetType().Assembly;
@@ -67,7 +93,5 @@ namespace AdventOfCode
 
             return lines;
         }
-
-        protected abstract long Solve(IEnumerable<string> lines);
     }
 }

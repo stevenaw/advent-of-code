@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using TestCaseAttribute = AdventOfCode.Tests.AocTestCaseAttribute;
 
 [assembly: Parallelizable(ParallelScope.Children)]
 
@@ -72,6 +73,7 @@ namespace AdventOfCode.Tests
         [TestCase(2017, 9, 1, ExpectedResult = 16869)]
         [TestCase(2017, 9, 2, ExpectedResult = 7284)]
         [TestCase(2017, 10, 1, ExpectedResult = 212)]
+        [TestCase(2017, 10, 2, ExpectedResult = "96de9657665675b51cd03f0b3528ba26", TypeArgs = [typeof(string)])]
 
         [TestCase(2020, 1, 1, ExpectedResult = 878724)]
         [TestCase(2020, 1, 2, ExpectedResult = 201251610)]
@@ -111,7 +113,7 @@ namespace AdventOfCode.Tests
         [TestCase(2020, 18, 1, ExpectedResult = 45283905029161)]
         [TestCase(2020, 18, 2, ExpectedResult = 216975281211165)]
         [TestCase(2020, 19, 1, ExpectedResult = 285)]
-        public long VerifyResults(int year, int day, int puzzleNumber)
-            => AdventPuzzle.Solve(year, day, puzzleNumber);
+        public TResult VerifyResults<TResult>(int year, int day, int puzzleNumber)
+            => AdventPuzzle.Solve<TResult>(year, day, puzzleNumber);
     }
 }
