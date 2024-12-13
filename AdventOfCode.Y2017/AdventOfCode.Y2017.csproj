@@ -20,6 +20,7 @@
     <EmbeddedResource Include="Dec07\Data.txt" />
     <EmbeddedResource Include="Dec08\Data.txt" />
     <EmbeddedResource Include="Dec09\Data.txt" />
+    <EmbeddedResource Include="Dec10\Data.txt" />
   </ItemGroup>
 
   <ItemGroup>
