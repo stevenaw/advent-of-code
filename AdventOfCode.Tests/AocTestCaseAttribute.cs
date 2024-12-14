@@ -12,7 +12,11 @@
     public class AocTestCaseData : NUnit.Framework.TestCaseData
     {
         public AocTestCaseData(int year, int day, int puzzleNumber)
-            : base(year, day, puzzleNumber) { }
+            : base(year, day, puzzleNumber)
+        {
+            // A bit of a hack
+            this.SetName("VerifyResults{a}");
+        }
 
         public NUnit.Framework.TestCaseData SetExpectedResult(string expectedResult)
         {

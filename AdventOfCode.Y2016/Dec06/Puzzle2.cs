@@ -1,8 +1,8 @@
 ﻿namespace AdventOfCode.Y2016.Dec06
 {
-    internal class Puzzle2 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle<string>
     {
-        protected override long Solve(IEnumerable<string> lines)
+        protected override string Solve(IEnumerable<string> lines)
         {
             const int LettersPerWord = 8;
             const int LettersInAlphabet = 26;
@@ -38,9 +38,7 @@
                 answer[i] = letter;
             }
 
-            Console.WriteLine(answer.ToString());
-
-            return TypeEncoder.EncodeAsLong(answer);
+            return answer.ToString();
         }
     }
 }

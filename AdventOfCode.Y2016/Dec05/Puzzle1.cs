@@ -1,8 +1,8 @@
 ﻿namespace AdventOfCode.Y2016.Dec05
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle1 : AdventPuzzle<string>
     {
-        protected override long Solve(IEnumerable<string> lines)
+        protected override string Solve(IEnumerable<string> lines)
         {
             const int DigitCount = 8;
 
@@ -21,7 +21,7 @@
                 password[i] = hash[5];
             }
 
-            return TypeEncoder.EncodeAsLong(password);
+            return password.ToString();
         }
     }
 }

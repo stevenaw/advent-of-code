@@ -51,10 +51,10 @@ namespace AdventOfCode.Tests
             yield return new TestCaseData(2016, 3, 2).SetExpectedResult(1838);
             yield return new TestCaseData(2016, 4, 1).SetExpectedResult(278221);
             yield return new TestCaseData(2016, 4, 2).SetExpectedResult(267);
-            yield return new TestCaseData(2016, 5, 1).SetExpectedResult(1987397493);
-            yield return new TestCaseData(2016, 5, 2).SetExpectedResult(1999783735);
-            yield return new TestCaseData(2016, 6, 1).SetExpectedResult(2105244271);
-            yield return new TestCaseData(2016, 6, 2).SetExpectedResult(2104389479);
+            yield return new TestCaseData(2016, 5, 1).SetExpectedResult("D4CD2EE1");
+            yield return new TestCaseData(2016, 5, 2).SetExpectedResult("F2C730E5");
+            yield return new TestCaseData(2016, 6, 1).SetExpectedResult("tsreykjj");
+            yield return new TestCaseData(2016, 6, 2).SetExpectedResult("hnfbujie");
             yield return new TestCaseData(2016, 7, 1).SetExpectedResult(105);
             yield return new TestCaseData(2016, 7, 2).SetExpectedResult(258);
             yield return new TestCaseData(2016, 8, 1).SetExpectedResult(123);
@@ -73,7 +73,7 @@ namespace AdventOfCode.Tests
             yield return new TestCaseData(2017, 5, 2).SetExpectedResult(25558839);
             yield return new TestCaseData(2017, 6, 1).SetExpectedResult(3156);
             yield return new TestCaseData(2017, 6, 2).SetExpectedResult(1610);
-            yield return new TestCaseData(2017, 7, 1).SetExpectedResult(212839441558);
+            yield return new TestCaseData(2017, 7, 1).SetExpectedResult("dgoocsw");
             yield return new TestCaseData(2017, 8, 1).SetExpectedResult(4163);
             yield return new TestCaseData(2017, 8, 2).SetExpectedResult(5347);
             yield return new TestCaseData(2017, 9, 1).SetExpectedResult(16869);

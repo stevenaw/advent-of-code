@@ -1,8 +1,8 @@
 ﻿namespace AdventOfCode.Y2016.Dec05
 {
-    internal class Puzzle2 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle<string>
     {
-        protected override long Solve(IEnumerable<string> lines)
+        protected override string Solve(IEnumerable<string> lines)
         {
             Span<char> password = stackalloc char[8];
 
@@ -24,7 +24,7 @@
                 }
             }
 
-            return TypeEncoder.EncodeAsLong(password);
+            return password.ToString();
         }
     }
 }

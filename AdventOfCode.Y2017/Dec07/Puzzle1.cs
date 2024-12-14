@@ -1,11 +1,11 @@
 ﻿namespace AdventOfCode.Y2017.Dec07
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle1 : AdventPuzzle<string>
     {
-        protected override long Solve(IEnumerable<string> lines)
+        protected override string Solve(IEnumerable<string> lines)
         {
             var tree = Tree.Parse(lines);
-            return TypeEncoder.EncodeLettersAsLong(tree.Root.Name);
+            return tree.Root.Name;
         }
     }
 }
