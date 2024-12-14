@@ -51,8 +51,6 @@ namespace AdventOfCode.Y2017.Dec10
             var result = Convert.ToHexString(denseHash).ToLower();
             return result;
 
-            //return buffer[0] * buffer[1];
-
             static void Swap<T>(T[] buffer, int x, int y) where T : unmanaged
             {
                 if (!x.Equals(y))

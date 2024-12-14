@@ -2,7 +2,7 @@
 {
     internal static class PasswordGenerator
     {
-        public static string[] GenerateNextPasswords(string seed, int n)
+        public static string GenerateNthPassword(string seed, int n)
         {
             var chars = seed.ToCharArray().AsSpan();
             var result = new string[n];
@@ -17,7 +17,7 @@
                 result[i] = chars.ToString()!;
             }
 
-            return result;
+            return result[n-1];
         }
 
         private static bool FollowsRule1(ReadOnlySpan<char> chars)

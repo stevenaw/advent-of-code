@@ -1,16 +1,14 @@
 ﻿namespace AdventOfCode.Y2015.Dec11
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle1 : AdventPuzzle<string>
     {
-        protected override long Solve(IEnumerable<string> lines)
+        protected override string Solve(IEnumerable<string> lines)
         {
             var input = lines.First();
 
-            var result = PasswordGenerator.GenerateNextPasswords(input, 1);
+            var result = PasswordGenerator.GenerateNthPassword(input, 1);
 
-            Console.WriteLine(result.Last());
-
-            return TypeEncoder.EncodeAsLong(result.Last());
+            return result;
         }
     }
 }

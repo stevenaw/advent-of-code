@@ -15,7 +15,7 @@
             {
                 string hash;
 
-                while (!(hash = Hasher.HashAsHexString(payloadPrefix, suffixIdx++)).StartsWith("00000"))
+                while (!(hash = Hasher.HashAsHexString(payloadPrefix, suffixIdx++)).StartsWith("00000", StringComparison.Ordinal))
                 { }
 
                 password[i] = hash[5];
