@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using TestCaseAttribute = AdventOfCode.Tests.AocTestCaseAttribute;
+using TestCaseData = AdventOfCode.Tests.AocTestCaseData;
 
 [assembly: Parallelizable(ParallelScope.Children)]
 
@@ -8,112 +8,117 @@ namespace AdventOfCode.Tests
     [TestFixture]
     public class PuzzleTests
     {
-        [TestCase(2015, 1, 1, ExpectedResult = 280)]
-        [TestCase(2015, 1, 2, ExpectedResult = 1797)]
-        [TestCase(2015, 2, 1, ExpectedResult = 1588178)]
-        [TestCase(2015, 2, 2, ExpectedResult = 3783758)]
-        [TestCase(2015, 3, 1, ExpectedResult = 2572)]
-        [TestCase(2015, 3, 2, ExpectedResult = 2631)]
-        [TestCase(2015, 4, 1, ExpectedResult = 346386)]
-        [TestCase(2015, 4, 2, ExpectedResult = 9958218)]
-        [TestCase(2015, 5, 1, ExpectedResult = 238)]
-        [TestCase(2015, 5, 2, ExpectedResult = 69)]
-        [TestCase(2015, 6, 1, ExpectedResult = 400410)]
-        [TestCase(2015, 6, 2, ExpectedResult = 15343601)]
-        [TestCase(2015, 7, 1, ExpectedResult = 46065)]
-        [TestCase(2015, 7, 2, ExpectedResult = 14134)]
-        [TestCase(2015, 8, 1, ExpectedResult = 1333)]
-        [TestCase(2015, 8, 2, ExpectedResult = 2046)]
-        [TestCase(2015, 9, 1, ExpectedResult = 251)]
-        [TestCase(2015, 9, 2, ExpectedResult = 898)]
-        [TestCase(2015, 10, 1, ExpectedResult = 492982)]
-        [TestCase(2015, 10, 2, ExpectedResult = 6989950)]
-        [TestCase(2015, 11, 1, ExpectedResult = "vzbxxyzz", TypeArgs = [typeof(string)])]
-        [TestCase(2015, 11, 2, ExpectedResult = "vzcaabcc", TypeArgs = [typeof(string)])]
-        [TestCase(2015, 12, 1, ExpectedResult = 119433)]
-        [TestCase(2015, 12, 2, ExpectedResult = 68466)]
-        [TestCase(2015, 13, 1, ExpectedResult = 709)]
-        [TestCase(2015, 13, 2, ExpectedResult = 668)]
-        [TestCase(2015, 14, 1, ExpectedResult = 2696)]
-        [TestCase(2015, 14, 2, ExpectedResult = 1084)]
-
-        [TestCase(2016, 1, 1, ExpectedResult = 301)]
-        [TestCase(2016, 1, 2, ExpectedResult = 130)]
-        [TestCase(2016, 2, 1, ExpectedResult = 84452)]
-        [TestCase(2016, 2, 2, ExpectedResult = 909460343)]
-        [TestCase(2016, 3, 1, ExpectedResult = 1032)]
-        [TestCase(2016, 3, 2, ExpectedResult = 1838)]
-        [TestCase(2016, 4, 1, ExpectedResult = 278221)]
-        [TestCase(2016, 4, 2, ExpectedResult = 267)]
-        [TestCase(2016, 5, 1, ExpectedResult = 1987397493)]
-        [TestCase(2016, 5, 2, ExpectedResult = 1999783735)]
-        [TestCase(2016, 6, 1, ExpectedResult = 2105244271)]
-        [TestCase(2016, 6, 2, ExpectedResult = 2104389479)]
-        [TestCase(2016, 7, 1, ExpectedResult = 105)]
-        [TestCase(2016, 7, 2, ExpectedResult = 258)]
-        [TestCase(2016, 8, 1, ExpectedResult = 123)]
-        [TestCase(2016, 8, 2, ExpectedResult = 587024086820363250)]
-        [TestCase(2016, 9, 1, ExpectedResult = 70186)]
-        [TestCase(2016, 9, 2, ExpectedResult = 10915059201)]
-
-        [TestCase(2017, 1, 1, ExpectedResult = 1343)]
-        [TestCase(2017, 1, 2, ExpectedResult = 1274)]
-        [TestCase(2017, 2, 1, ExpectedResult = 36766)]
-        [TestCase(2017, 2, 2, ExpectedResult = 261)]
-        [TestCase(2017, 3, 1, ExpectedResult = 552)]
-        [TestCase(2017, 4, 1, ExpectedResult = 337)]
-        [TestCase(2017, 4, 2, ExpectedResult = 231)]
-        [TestCase(2017, 5, 1, ExpectedResult = 358131)]
-        [TestCase(2017, 5, 2, ExpectedResult = 25558839)]
-        [TestCase(2017, 6, 1, ExpectedResult = 3156)]
-        [TestCase(2017, 6, 2, ExpectedResult = 1610)]
-        [TestCase(2017, 7, 1, ExpectedResult = 212839441558)]
-        [TestCase(2017, 8, 1, ExpectedResult = 4163)]
-        [TestCase(2017, 8, 2, ExpectedResult = 5347)]
-        [TestCase(2017, 9, 1, ExpectedResult = 16869)]
-        [TestCase(2017, 9, 2, ExpectedResult = 7284)]
-        [TestCase(2017, 10, 1, ExpectedResult = 212)]
-        [TestCase(2017, 10, 2, ExpectedResult = "96de9657665675b51cd03f0b3528ba26", TypeArgs = [typeof(string)])]
-
-        [TestCase(2020, 1, 1, ExpectedResult = 878724)]
-        [TestCase(2020, 1, 2, ExpectedResult = 201251610)]
-        [TestCase(2020, 2, 1, ExpectedResult = 572)]
-        [TestCase(2020, 2, 2, ExpectedResult = 306)]
-        [TestCase(2020, 3, 1, ExpectedResult = 244)]
-        [TestCase(2020, 3, 2, ExpectedResult = 9406609920)]
-        [TestCase(2020, 4, 1, ExpectedResult = 256)]
-        [TestCase(2020, 4, 2, ExpectedResult = 198)]
-        [TestCase(2020, 5, 1, ExpectedResult = 913)]
-        [TestCase(2020, 5, 2, ExpectedResult = 717)]
-        [TestCase(2020, 6, 1, ExpectedResult = 6680)]
-        [TestCase(2020, 6, 2, ExpectedResult = 3117)]
-        [TestCase(2020, 7, 1, ExpectedResult = 242)]
-        [TestCase(2020, 7, 2, ExpectedResult = 176035)]
-        [TestCase(2020, 8, 1, ExpectedResult = 2080)]
-        [TestCase(2020, 8, 2, ExpectedResult = 2477)]
-        [TestCase(2020, 9, 1, ExpectedResult = 57195069)]
-        [TestCase(2020, 9, 1, ExpectedResult = 57195069)]
-        [TestCase(2020, 9, 2, ExpectedResult = 7409241)]
-        [TestCase(2020, 10, 1, ExpectedResult = 1998)]
-        [TestCase(2020, 10, 2, ExpectedResult = 347250213298688)]
-        [TestCase(2020, 11, 1, ExpectedResult = 2344)]
-        [TestCase(2020, 11, 2, ExpectedResult = 2076)]
-        [TestCase(2020, 12, 1, ExpectedResult = 1441)]
-        [TestCase(2020, 12, 2, ExpectedResult = 61616)]
-        [TestCase(2020, 13, 1, ExpectedResult = 3606)]
-        [TestCase(2020, 13, 2, ExpectedResult = 379786358533423)]
-        [TestCase(2020, 14, 1, ExpectedResult = 5902420735773)]
-        [TestCase(2020, 14, 2, ExpectedResult = 3801988250775)]
-        [TestCase(2020, 15, 1, ExpectedResult = 1085)]
-        [TestCase(2020, 15, 2, ExpectedResult = 10652)]
-        [TestCase(2020, 16, 1, ExpectedResult = 20048)]
-        [TestCase(2020, 16, 2, ExpectedResult = 4810284647569)]
-        [TestCase(2020, 17, 1, ExpectedResult = 242)]
-        [TestCase(2020, 17, 2, ExpectedResult = 2292)]
-        [TestCase(2020, 18, 1, ExpectedResult = 45283905029161)]
-        [TestCase(2020, 18, 2, ExpectedResult = 216975281211165)]
-        [TestCase(2020, 19, 1, ExpectedResult = 285)]
+        [TestCaseSource(nameof(GetTestCases))]
         public TResult VerifyResults<TResult>(int year, int day, int puzzleNumber)
             => AdventPuzzle.Solve<TResult>(year, day, puzzleNumber);
+
+        public static IEnumerable<NUnit.Framework.TestCaseData> GetTestCases()
+        {
+            yield return new TestCaseData(2015, 1, 1).SetExpectedResult(280);
+            yield return new TestCaseData(2015, 1, 2).SetExpectedResult(1797);
+            yield return new TestCaseData(2015, 2, 1).SetExpectedResult(1588178);
+            yield return new TestCaseData(2015, 2, 2).SetExpectedResult(3783758);
+            yield return new TestCaseData(2015, 3, 1).SetExpectedResult(2572);
+            yield return new TestCaseData(2015, 3, 2).SetExpectedResult(2631);
+            yield return new TestCaseData(2015, 4, 1).SetExpectedResult(346386);
+            yield return new TestCaseData(2015, 4, 2).SetExpectedResult(9958218);
+            yield return new TestCaseData(2015, 5, 1).SetExpectedResult(238);
+            yield return new TestCaseData(2015, 5, 2).SetExpectedResult(69);
+            yield return new TestCaseData(2015, 6, 1).SetExpectedResult(400410);
+            yield return new TestCaseData(2015, 6, 2).SetExpectedResult(15343601);
+            yield return new TestCaseData(2015, 7, 1).SetExpectedResult(46065);
+            yield return new TestCaseData(2015, 7, 2).SetExpectedResult(14134);
+            yield return new TestCaseData(2015, 8, 1).SetExpectedResult(1333);
+            yield return new TestCaseData(2015, 8, 2).SetExpectedResult(2046);
+            yield return new TestCaseData(2015, 9, 1).SetExpectedResult(251);
+            yield return new TestCaseData(2015, 9, 2).SetExpectedResult(898);
+            yield return new TestCaseData(2015, 10, 1).SetExpectedResult(492982);
+            yield return new TestCaseData(2015, 10, 2).SetExpectedResult(6989950);
+            yield return new TestCaseData(2015, 11, 1).SetExpectedResult("vzbxxyzz");
+            yield return new TestCaseData(2015, 11, 2).SetExpectedResult("vzcaabcc");
+            yield return new TestCaseData(2015, 12, 1).SetExpectedResult(119433);
+            yield return new TestCaseData(2015, 12, 2).SetExpectedResult(68466);
+            yield return new TestCaseData(2015, 13, 1).SetExpectedResult(709);
+            yield return new TestCaseData(2015, 13, 2).SetExpectedResult(668);
+            yield return new TestCaseData(2015, 14, 1).SetExpectedResult(2696);
+            yield return new TestCaseData(2015, 14, 2).SetExpectedResult(1084);
+
+            yield return new TestCaseData(2016, 1, 1).SetExpectedResult(301);
+            yield return new TestCaseData(2016, 1, 2).SetExpectedResult(130);
+            yield return new TestCaseData(2016, 2, 1).SetExpectedResult(84452);
+            yield return new TestCaseData(2016, 2, 2).SetExpectedResult(909460343);
+            yield return new TestCaseData(2016, 3, 1).SetExpectedResult(1032);
+            yield return new TestCaseData(2016, 3, 2).SetExpectedResult(1838);
+            yield return new TestCaseData(2016, 4, 1).SetExpectedResult(278221);
+            yield return new TestCaseData(2016, 4, 2).SetExpectedResult(267);
+            yield return new TestCaseData(2016, 5, 1).SetExpectedResult(1987397493);
+            yield return new TestCaseData(2016, 5, 2).SetExpectedResult(1999783735);
+            yield return new TestCaseData(2016, 6, 1).SetExpectedResult(2105244271);
+            yield return new TestCaseData(2016, 6, 2).SetExpectedResult(2104389479);
+            yield return new TestCaseData(2016, 7, 1).SetExpectedResult(105);
+            yield return new TestCaseData(2016, 7, 2).SetExpectedResult(258);
+            yield return new TestCaseData(2016, 8, 1).SetExpectedResult(123);
+            yield return new TestCaseData(2016, 8, 2).SetExpectedResult(587024086820363250);
+            yield return new TestCaseData(2016, 9, 1).SetExpectedResult(70186);
+            yield return new TestCaseData(2016, 9, 2).SetExpectedResult(10915059201);
+
+            yield return new TestCaseData(2017, 1, 1).SetExpectedResult(1343);
+            yield return new TestCaseData(2017, 1, 2).SetExpectedResult(1274);
+            yield return new TestCaseData(2017, 2, 1).SetExpectedResult(36766);
+            yield return new TestCaseData(2017, 2, 2).SetExpectedResult(261);
+            yield return new TestCaseData(2017, 3, 1).SetExpectedResult(552);
+            yield return new TestCaseData(2017, 4, 1).SetExpectedResult(337);
+            yield return new TestCaseData(2017, 4, 2).SetExpectedResult(231);
+            yield return new TestCaseData(2017, 5, 1).SetExpectedResult(358131);
+            yield return new TestCaseData(2017, 5, 2).SetExpectedResult(25558839);
+            yield return new TestCaseData(2017, 6, 1).SetExpectedResult(3156);
+            yield return new TestCaseData(2017, 6, 2).SetExpectedResult(1610);
+            yield return new TestCaseData(2017, 7, 1).SetExpectedResult(212839441558);
+            yield return new TestCaseData(2017, 8, 1).SetExpectedResult(4163);
+            yield return new TestCaseData(2017, 8, 2).SetExpectedResult(5347);
+            yield return new TestCaseData(2017, 9, 1).SetExpectedResult(16869);
+            yield return new TestCaseData(2017, 9, 2).SetExpectedResult(7284);
+            yield return new TestCaseData(2017, 10, 1).SetExpectedResult(212);
+            yield return new TestCaseData(2017, 10, 2).SetExpectedResult("96de9657665675b51cd03f0b3528ba26");
+
+            yield return new TestCaseData(2020, 1, 1).SetExpectedResult(878724);
+            yield return new TestCaseData(2020, 1, 2).SetExpectedResult(201251610);
+            yield return new TestCaseData(2020, 2, 1).SetExpectedResult(572);
+            yield return new TestCaseData(2020, 2, 2).SetExpectedResult(306);
+            yield return new TestCaseData(2020, 3, 1).SetExpectedResult(244);
+            yield return new TestCaseData(2020, 3, 2).SetExpectedResult(9406609920);
+            yield return new TestCaseData(2020, 4, 1).SetExpectedResult(256);
+            yield return new TestCaseData(2020, 4, 2).SetExpectedResult(198);
+            yield return new TestCaseData(2020, 5, 1).SetExpectedResult(913);
+            yield return new TestCaseData(2020, 5, 2).SetExpectedResult(717);
+            yield return new TestCaseData(2020, 6, 1).SetExpectedResult(6680);
+            yield return new TestCaseData(2020, 6, 2).SetExpectedResult(3117);
+            yield return new TestCaseData(2020, 7, 1).SetExpectedResult(242);
+            yield return new TestCaseData(2020, 7, 2).SetExpectedResult(176035);
+            yield return new TestCaseData(2020, 8, 1).SetExpectedResult(2080);
+            yield return new TestCaseData(2020, 8, 2).SetExpectedResult(2477);
+            yield return new TestCaseData(2020, 9, 1).SetExpectedResult(57195069);
+            yield return new TestCaseData(2020, 9, 1).SetExpectedResult(57195069);
+            yield return new TestCaseData(2020, 9, 2).SetExpectedResult(7409241);
+            yield return new TestCaseData(2020, 10, 1).SetExpectedResult(1998);
+            yield return new TestCaseData(2020, 10, 2).SetExpectedResult(347250213298688);
+            yield return new TestCaseData(2020, 11, 1).SetExpectedResult(2344);
+            yield return new TestCaseData(2020, 11, 2).SetExpectedResult(2076);
+            yield return new TestCaseData(2020, 12, 1).SetExpectedResult(1441);
+            yield return new TestCaseData(2020, 12, 2).SetExpectedResult(61616);
+            yield return new TestCaseData(2020, 13, 1).SetExpectedResult(3606);
+            yield return new TestCaseData(2020, 13, 2).SetExpectedResult(379786358533423);
+            yield return new TestCaseData(2020, 14, 1).SetExpectedResult(5902420735773);
+            yield return new TestCaseData(2020, 14, 2).SetExpectedResult(3801988250775);
+            yield return new TestCaseData(2020, 15, 1).SetExpectedResult(1085);
+            yield return new TestCaseData(2020, 15, 2).SetExpectedResult(10652);
+            yield return new TestCaseData(2020, 16, 1).SetExpectedResult(20048);
+            yield return new TestCaseData(2020, 16, 2).SetExpectedResult(4810284647569);
+            yield return new TestCaseData(2020, 17, 1).SetExpectedResult(242);
+            yield return new TestCaseData(2020, 17, 2).SetExpectedResult(2292);
+            yield return new TestCaseData(2020, 18, 1).SetExpectedResult(45283905029161);
+            yield return new TestCaseData(2020, 18, 2).SetExpectedResult(216975281211165);
+            yield return new TestCaseData(2020, 19, 1).SetExpectedResult(285);
+        }
     }
 }
