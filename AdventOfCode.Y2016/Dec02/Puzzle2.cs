@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Y2016.Dec02
 {
-    internal class Puzzle2 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle<string>
     {
         private static readonly bool[] _allowed = new bool[25]
         {
@@ -11,7 +11,7 @@
             false, false, true, false, false,
         };
 
-        protected override long Solve(IEnumerable<string> lines)
+        protected override string Solve(IEnumerable<string> lines)
         {
             var result = "";
             var position = 10;
@@ -25,9 +25,7 @@
                 result += digit;
             }
 
-            Console.WriteLine(result);
-
-            return TypeEncoder.EncodeAsLong(result);
+            return result;
         }
 
         private static char Translate(int current)
