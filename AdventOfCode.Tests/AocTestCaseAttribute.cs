@@ -14,8 +14,8 @@
         public AocTestCaseData(int year, int day, int puzzleNumber)
             : base(year, day, puzzleNumber)
         {
-            // A bit of a hack
-            this.SetName("VerifyResults{a}");
+            // A bit of a hack to remove the generic type from the name
+            this.SetName(nameof(PuzzleTests.VerifyResults) + "{a}");
         }
 
         public NUnit.Framework.TestCaseData SetExpectedResult(string expectedResult)

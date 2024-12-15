@@ -1,8 +1,8 @@
 ﻿namespace AdventOfCode.Y2016.Dec08
 {
-    internal class Puzzle2 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle<string>
     {
-        protected override long Solve(IEnumerable<string> lines)
+        protected override string Solve(IEnumerable<string> lines)
         {
             var grid = new Grid(50, 6);
 
@@ -15,7 +15,8 @@
                 grid.Output();
             }
 
-            return TypeEncoder.EncodeLettersAsLong("AFBUPZBJPS");
+            // Output to console by above
+            return "AFBUPZBJPS";
         }
     }
 }
