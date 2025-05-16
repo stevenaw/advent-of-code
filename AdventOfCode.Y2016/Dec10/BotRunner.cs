@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace AdventOfCode.Y2016.Dec10
 {
-    internal record class BotCommand(int BotId, int LowId, string LowType, int HighId, string HighType);
+    internal enum ValueDestination
+    {
+        Bot,
+        Output
+    }
+
+    internal record class BotCommand(int BotId, int LowId, ValueDestination LowType, int HighId, ValueDestination HighType);
 
     internal class BotRunner
     {
         private readonly Dictionary<int, List<int>> bots = [];
         private readonly List<BotCommand> ops = [];
 
-        public readonly Dictionary<int, int> Outputs = [];
-        public readonly List<(int botId, int low, int high)> ComparisonHistory = [];
+        public Dictionary<int, int> Outputs { get; } = [];
+        public List<(int botId, int low, int high)> ComparisonHistory { get; } = [];
 
         public void ReceiveCommand(string line)
         {
@@ -33,18 +34,18 @@ namespace AdventOfCode.Y2016.Dec10
                 var match = Regex.Match(line, @"^bot (\d+) gives low to (bot|output) (\d+) and high to (bot|output) (\d+)$");
 
                 var botId = int.Parse(match.Groups[1].Value);
-                var lowType = match.Groups[2].Value;
+                var lowType = match.Groups[2].Value == "bot" ? ValueDestination.Bot : ValueDestination.Output;
                 var lowId = int.Parse(match.Groups[3].Value);
-                var highType = match.Groups[4].Value;
+                var highType = match.Groups[4].Value == "bot" ? ValueDestination.Bot : ValueDestination.Output;
                 var highId = int.Parse(match.Groups[5].Value);
 
                 ops.Add(new BotCommand(botId, lowId, lowType, highId, highType));
 
                 if (!bots.ContainsKey(botId))
                     bots[botId] = new List<int>();
-                if (lowType == "bot" && !bots.ContainsKey(lowId))
+                if (lowType == ValueDestination.Bot && !bots.ContainsKey(lowId))
                     bots[lowId] = new List<int>();
-                if (highType == "bot" && !bots.ContainsKey(highId))
+                if (highType == ValueDestination.Bot && !bots.ContainsKey(highId))
                     bots[highId] = new List<int>();
             }
         }
@@ -64,19 +65,19 @@ namespace AdventOfCode.Y2016.Dec10
 
                         ComparisonHistory.Add((op.BotId, lowValue, highValue));
 
-                        if (op.LowType == "bot")
+                        if (op.LowType == ValueDestination.Bot)
                         {
                             bots[op.LowId].Add(lowValue);
                         }
-                        if (op.HighType == "bot")
+                        if (op.HighType == ValueDestination.Bot)
                         {
                             bots[op.HighId].Add(highValue);
                         }
-                        if (op.LowType == "output")
+                        if (op.LowType == ValueDestination.Output)
                         {
                             Outputs[op.LowId] = lowValue;
                         }
-                        if (op.HighType == "output")
+                        if (op.HighType == ValueDestination.Output)
                         {
                             Outputs[op.HighId] = highValue;
                         }
