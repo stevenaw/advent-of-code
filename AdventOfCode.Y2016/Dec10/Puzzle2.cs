@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace AdventOfCode.Y2016.Dec10
+﻿namespace AdventOfCode.Y2016.Dec10
 {
     internal class Puzzle2 : AdventPuzzle
     {
@@ -12,9 +10,7 @@ namespace AdventOfCode.Y2016.Dec10
         {
             var runner = new BotRunner();
 
-            foreach (var line in lines)
-                runner.ReceiveCommand(line);
-
+            runner.ReceiveCommands(lines);
             runner.Process();
 
             return runner.Outputs[0] * runner.Outputs[1] * runner.Outputs[2];

@@ -18,35 +18,38 @@ namespace AdventOfCode.Y2016.Dec10
         public Dictionary<int, int> Outputs { get; } = [];
         public List<(int botId, int low, int high)> ComparisonHistory { get; } = [];
 
-        public void ReceiveCommand(string line)
+        public void ReceiveCommands(IEnumerable<string> lines)
         {
-            if (line.StartsWith("value"))
+            foreach(var line in lines)
             {
-                var match = Regex.Match(line, @"^value (\d+) goes to bot (\d+)$");
-                var value = int.Parse(match.Groups[1].Value);
-                var botId = int.Parse(match.Groups[2].Value);
-                if (!bots.ContainsKey(botId))
-                    bots[botId] = new List<int>();
-                bots[botId].Add(value);
-            }
-            else if (line.StartsWith("bot"))
-            {
-                var match = Regex.Match(line, @"^bot (\d+) gives low to (bot|output) (\d+) and high to (bot|output) (\d+)$");
+                if (line.StartsWith("value"))
+                {
+                    var match = Regex.Match(line, @"^value (\d+) goes to bot (\d+)$");
+                    var value = int.Parse(match.Groups[1].Value);
+                    var botId = int.Parse(match.Groups[2].Value);
+                    if (!bots.ContainsKey(botId))
+                        bots[botId] = new List<int>();
+                    bots[botId].Add(value);
+                }
+                else if (line.StartsWith("bot"))
+                {
+                    var match = Regex.Match(line, @"^bot (\d+) gives low to (bot|output) (\d+) and high to (bot|output) (\d+)$");
 
-                var botId = int.Parse(match.Groups[1].Value);
-                var lowType = match.Groups[2].Value == "bot" ? ValueDestination.Bot : ValueDestination.Output;
-                var lowId = int.Parse(match.Groups[3].Value);
-                var highType = match.Groups[4].Value == "bot" ? ValueDestination.Bot : ValueDestination.Output;
-                var highId = int.Parse(match.Groups[5].Value);
+                    var botId = int.Parse(match.Groups[1].Value);
+                    var lowType = match.Groups[2].Value == "bot" ? ValueDestination.Bot : ValueDestination.Output;
+                    var lowId = int.Parse(match.Groups[3].Value);
+                    var highType = match.Groups[4].Value == "bot" ? ValueDestination.Bot : ValueDestination.Output;
+                    var highId = int.Parse(match.Groups[5].Value);
 
-                ops.Add(new BotCommand(botId, lowId, lowType, highId, highType));
+                    ops.Add(new BotCommand(botId, lowId, lowType, highId, highType));
 
-                if (!bots.ContainsKey(botId))
-                    bots[botId] = new List<int>();
-                if (lowType == ValueDestination.Bot && !bots.ContainsKey(lowId))
-                    bots[lowId] = new List<int>();
-                if (highType == ValueDestination.Bot && !bots.ContainsKey(highId))
-                    bots[highId] = new List<int>();
+                    if (!bots.ContainsKey(botId))
+                        bots[botId] = new List<int>();
+                    if (lowType == ValueDestination.Bot && !bots.ContainsKey(lowId))
+                        bots[lowId] = new List<int>();
+                    if (highType == ValueDestination.Bot && !bots.ContainsKey(highId))
+                        bots[highId] = new List<int>();
+                }
             }
         }
 

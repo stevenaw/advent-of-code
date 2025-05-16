@@ -1,19 +1,12 @@
-﻿using System.Text.RegularExpressions;
-
-namespace AdventOfCode.Y2016.Dec10
+﻿namespace AdventOfCode.Y2016.Dec10
 {
     internal class Puzzle1 : AdventPuzzle
     {
-        private readonly Dictionary<int, List<int>> bots = [];
-
-
         protected override long Solve(IEnumerable<string> lines)
         {
             var runner = new BotRunner();
 
-            foreach (var line in lines)
-                runner.ReceiveCommand(line);
-
+            runner.ReceiveCommands(lines);
             runner.Process();
 
             var comparison = runner.ComparisonHistory.FirstOrDefault(x => x.low == 17 && x.high == 61);
