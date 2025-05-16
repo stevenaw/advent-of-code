@@ -2,10 +2,11 @@
 
 namespace AdventOfCode.Y2016.Dec10
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle
     {
         private readonly Dictionary<int, List<int>> bots = [];
 
+        private record class BotCommand(int BotId, int LowId, string LowType, int HighId, string HighType);
 
         protected override long Solve(IEnumerable<string> lines)
         {
@@ -16,8 +17,7 @@ namespace AdventOfCode.Y2016.Dec10
 
             runner.Process();
 
-            var comparison = runner.ComparisonHistory.FirstOrDefault(x => x.low == 17 && x.high == 61);
-            return comparison.botId;
+            return runner.Outputs[0] * runner.Outputs[1] * runner.Outputs[2];
         }
     }
 }

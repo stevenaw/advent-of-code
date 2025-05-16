@@ -62,6 +62,7 @@ namespace AdventOfCode.Tests
             yield return new TestCaseData(2016, 9, 1).SetExpectedResult(70186);
             yield return new TestCaseData(2016, 9, 2).SetExpectedResult(10915059201);
             yield return new TestCaseData(2016, 10, 1).SetExpectedResult(27);
+            yield return new TestCaseData(2016, 10, 2).SetExpectedResult(13727);
 
             yield return new TestCaseData(2017, 1, 1).SetExpectedResult(1343);
             yield return new TestCaseData(2017, 1, 2).SetExpectedResult(1274);
