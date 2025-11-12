@@ -10,7 +10,7 @@ namespace AdventOfCode.Y2016.Dec10
 
     internal record class BotCommand(int BotId, int LowId, ValueDestination LowType, int HighId, ValueDestination HighType);
 
-    internal class BotRunner
+    internal partial class BotRunner
     {
         private readonly Dictionary<int, List<int>> bots = [];
         private readonly List<BotCommand> ops = [];
@@ -22,18 +22,18 @@ namespace AdventOfCode.Y2016.Dec10
         {
             foreach(var line in lines)
             {
-                if (line.StartsWith("value"))
+                if (line.StartsWith("value", StringComparison.Ordinal))
                 {
-                    var match = Regex.Match(line, @"^value (\d+) goes to bot (\d+)$");
+                    var match = BotReceivesValueRegex().Match(line);
                     var value = int.Parse(match.Groups[1].Value);
                     var botId = int.Parse(match.Groups[2].Value);
                     if (!bots.ContainsKey(botId))
                         bots[botId] = new List<int>();
                     bots[botId].Add(value);
                 }
-                else if (line.StartsWith("bot"))
+                else if (line.StartsWith("bot", StringComparison.Ordinal))
                 {
-                    var match = Regex.Match(line, @"^bot (\d+) gives low to (bot|output) (\d+) and high to (bot|output) (\d+)$");
+                    var match = BotGivesToBotRegex().Match(line);
 
                     var botId = int.Parse(match.Groups[1].Value);
                     var lowType = match.Groups[2].Value == "bot" ? ValueDestination.Bot : ValueDestination.Output;
@@ -92,5 +92,11 @@ namespace AdventOfCode.Y2016.Dec10
                 }
             }
         }
+
+        [GeneratedRegex(@"^bot (\d+) gives low to (bot|output) (\d+) and high to (bot|output) (\d+)$")]
+        internal static partial Regex BotGivesToBotRegex();
+
+        [GeneratedRegex(@"^value (\d+) goes to bot (\d+)$")]
+        internal static partial Regex BotReceivesValueRegex();
     }
 }
