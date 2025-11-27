@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode.Y2015.Dec16
 {
@@ -20,7 +22,7 @@ namespace AdventOfCode.Y2015.Dec16
 
         protected override long Solve(IEnumerable<string> lines)
         {
-            Span<int> neededAttributes = new int[10];
+            int[] neededAttributes = new int[10];
 
             neededAttributes[(int)Attributes.children] = 3;
             neededAttributes[(int)Attributes.cats] = 7;
@@ -47,23 +49,7 @@ namespace AdventOfCode.Y2015.Dec16
                     var attribute = Enum.Parse<Attributes>(animals[i].ValueSpan);
                     var value = int.Parse(counts[i].ValueSpan);
 
-                    if (attribute == Attributes.cats || attribute == Attributes.trees)
-                    {
-                        if (value <= neededAttributes[(int)attribute])
-                        {
-                            match = false;
-                            break;
-                        }
-                    }
-                    else if (attribute == Attributes.pomeranians ||  attribute == Attributes.goldfish)
-                    {
-                        if (value >= neededAttributes[(int)attribute])
-                        {
-                            match = false;
-                            break;
-                        }
-                    }
-                    else if(neededAttributes[(int)attribute] != value)
+                    if (IsNotSue(attribute, value))
                     {
                         match = false;
                         break;
@@ -75,6 +61,22 @@ namespace AdventOfCode.Y2015.Dec16
             }
 
             return 0;
+
+            bool IsNotSue(Attributes attribute, int value)
+            {
+                if (attribute == Attributes.cats || attribute == Attributes.trees)
+                {
+                    return value <= neededAttributes[(int)attribute];
+                }
+                else if (attribute == Attributes.pomeranians || attribute == Attributes.goldfish)
+                {
+                    return value >= neededAttributes[(int)attribute];
+                }
+                else
+                {
+                    return neededAttributes[(int)attribute] != value;
+                }
+            }
         }
 
         [GeneratedRegex(@"^Sue (\d+): ((\w+): (\d+)(, )?)+")]

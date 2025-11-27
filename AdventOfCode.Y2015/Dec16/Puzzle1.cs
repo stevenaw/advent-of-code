@@ -20,7 +20,7 @@ namespace AdventOfCode.Y2015.Dec16
 
         protected override long Solve(IEnumerable<string> lines)
         {
-            Span<int> neededAttributes = new int[10];
+            int[] neededAttributes = new int[10];
 
             neededAttributes[(int)Attributes.children] = 3;
             neededAttributes[(int)Attributes.cats] = 7;
@@ -47,7 +47,7 @@ namespace AdventOfCode.Y2015.Dec16
                     var attribute = Enum.Parse<Attributes>(animals[i].ValueSpan);
                     var value = int.Parse(counts[i].ValueSpan);
 
-                    if(neededAttributes[(int)attribute] != value)
+                    if(IsNotSue(attribute, value))
                     {
                         match = false;
                         break;
@@ -59,6 +59,11 @@ namespace AdventOfCode.Y2015.Dec16
             }
 
             return 0;
+
+            bool IsNotSue(Attributes attribute, int value)
+            {
+                return neededAttributes[(int)attribute] != value;
+            }
         }
 
         [GeneratedRegex(@"^Sue (\d+): ((\w+): (\d+)(, )?)+")]
