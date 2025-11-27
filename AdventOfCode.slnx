@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="AdventOfCode/AdventOfCode.csproj" />
+  <Project Path="AdventOfCode.Runner/AdventOfCode.Runner.csproj" />
   <Project Path="AdventOfCode.Tests/AdventOfCode.Tests.csproj" />
   <Project Path="AdventOfCode.Y2015/AdventOfCode.Y2015.csproj" />
   <Project Path="AdventOfCode.Y2016/AdventOfCode.Y2016.csproj" />
