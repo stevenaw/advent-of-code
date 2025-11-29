@@ -1,14 +1,5 @@
 ﻿namespace AdventOfCode.Tests
 {
-    public class AocTestCaseAttribute : NUnit.Framework.TestCaseAttribute<int, int, int>
-    {
-        public AocTestCaseAttribute(int year, int day, int puzzleNumber)
-            : base(year, day, puzzleNumber)
-        {
-            TypeArgs = [typeof(long)];
-        }
-    }
-
     public class AocTestCaseData : NUnit.Framework.TestCaseData<int, int, int>
     {
         public AocTestCaseData(int year, int day, int puzzleNumber)
