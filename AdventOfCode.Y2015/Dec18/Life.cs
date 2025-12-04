@@ -84,6 +84,14 @@
             };
         }
 
+        public void MarkCorners()
+        {
+            CurrentGeneration.Data[0][0] = true;
+            CurrentGeneration.Data[0][Width - 1] = true;
+            CurrentGeneration.Data[Height - 1][0] = true;
+            CurrentGeneration.Data[Height - 1][Width - 1] = true;
+        }
+
         public long CountLivingDenizens()
         {
             var count = 0L;
