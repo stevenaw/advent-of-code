@@ -39,6 +39,7 @@
     <EmbeddedResource Include="Dec16\Data.txt" />
     <EmbeddedResource Include="Dec17\Data.txt" />
     <EmbeddedResource Include="Dec18\Data.txt" />
+    <EmbeddedResource Include="Dec19\Data.txt" />
   </ItemGroup>
 
 </Project>
