@@ -53,7 +53,20 @@ namespace AdventOfCode.Y2015.Dec19
 
                     foreach (var replacement in kvp.Value)
                     {
-                        var newString = haystack.Substring(0, idx) + replacement + haystack.Substring(idx + kvp.Key.Length);
+                        var newLength = haystack.Length - kvp.Key.Length + replacement.Length;
+                        var newString = string.Create(
+                            newLength,
+                            (haystack, needle: kvp.Key, replacement, idx),
+                            (buffer, state) =>
+                            {
+                                var h = haystack.AsSpan();
+
+                                h.Slice(0, idx).CopyTo(buffer);
+                                replacement.AsSpan().CopyTo(buffer.Slice(idx));
+                                h.Slice(idx + kvp.Key.Length).CopyTo(buffer.Slice(idx + replacement.Length));
+
+                            });
+
                         yield return newString;
                     }
 
