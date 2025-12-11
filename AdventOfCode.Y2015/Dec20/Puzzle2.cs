@@ -1,8 +1,9 @@
 ﻿namespace AdventOfCode.Y2015.Dec20
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle
     {
-        private const int GiftsPerHouse = 10;
+        private const int HousesPerElf = 50;
+        private const int GiftsPerHouse = 11;
 
         protected override long Solve(IEnumerable<string> lines)
         {
@@ -11,6 +12,7 @@
             for (var i = 1; i < target / GiftsPerHouse; i++)
             {
                 var gifts = FactorizationHelpers.GetFactors(i)
+                    .Where(x => x * HousesPerElf >= i)
                     .Select(x => x * GiftsPerHouse)
                     .Sum();
 
