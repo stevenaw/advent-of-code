@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Y2015.Dec17
 {
-    internal partial class Puzzle1 : AdventPuzzle
+    internal class Puzzle1 : AdventPuzzle
     {
         const int Total = 150;
 

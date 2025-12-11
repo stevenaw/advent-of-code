@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Y2015.Dec19
 {
-    internal partial class Puzzle1 : AdventPuzzle
+    internal class Puzzle1 : AdventPuzzle
     {
         protected override long Solve(IEnumerable<string> lines)
         {

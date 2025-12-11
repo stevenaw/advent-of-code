@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Y2015.Dec18
 {
-    internal partial class Puzzle2 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle
     {
         const int StepCount = 100;
 
