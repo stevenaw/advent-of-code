@@ -20,30 +20,16 @@
                 while (idx != -1)
                 {
                     // we've found a token to substitute
-
                     foreach (var replacement in kvp.Value)
                     {
-                        var newLength = haystack.Length - kvp.Key.Length + replacement.Length;
-                        var newString = string.Create(
-                            newLength,
-                            (haystack, needle: kvp.Key, replacement, idx),
-                            (buffer, state) =>
-                            {
-                                var h = haystack.AsSpan();
-
-                                h.Slice(0, idx).CopyTo(buffer);
-                                replacement.AsSpan().CopyTo(buffer.Slice(idx));
-                                h.Slice(idx + kvp.Key.Length).CopyTo(buffer.Slice(idx + replacement.Length));
-
-                            });
-
-                        yield return newString;
+                        yield return haystack.ReplaceAt(kvp.Key, replacement, idx);
                     }
 
                     i = idx + 1;
                     idx = haystack.IndexOf(kvp.Key, i, StringComparison.Ordinal);
                 }
             }
+
         }
     }
 }
