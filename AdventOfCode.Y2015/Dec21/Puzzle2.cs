@@ -1,27 +1,24 @@
 ﻿namespace AdventOfCode.Y2015.Dec21
 {
-    internal class Puzzle1 : AdventPuzzle
+    internal class Puzzle2 : AdventPuzzle
     {
         protected override long Solve(IEnumerable<string> lines)
         {
             var bossStats = Game.GetBossStats(lines);
-            var minimumCost = int.MaxValue;
+            var maxCost = int.MinValue;
 
             foreach (var items in Game.EnumerateSetups())
             {
                 var boss = bossStats.Clone();
                 var player = Game.Entity.FromItems(items);
 
-                if (Game.DoesPlayerWin(player, boss))
+                if (!Game.DoesPlayerWin(player, boss))
                 {
-                    minimumCost = Math.Min(minimumCost, player.GearCost);
+                    maxCost = Math.Max(maxCost, player.GearCost);
                 }
             }
 
-            return minimumCost;
+            return maxCost;
         }
     }
 }
-
-        
-
