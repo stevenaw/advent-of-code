@@ -40,8 +40,7 @@
                 var value = num.ToString().AsSpan();
                 var digits = (int)(Math.Floor(Math.Log10(num)) + 1);
 
-                var factors = GetFactors(digits).GetEnumerator();
-
+                var factors = GetFactors(digits).GetEnumerator<int>();
                 if (!factors!.MoveNext())
                 {
                     return false; 
@@ -49,7 +48,7 @@
 
                 do
                 {
-                    var len = (int)factors.Current;
+                    var len = factors.Current;
                     var needle = value.Slice(0, len);
                     var isMatch = true;
 
