@@ -36,16 +36,7 @@
 
                     for (var i = start; i <= end; i++)
                     {
-                        var value = i.ToString();
-                        if (value.Length % 2 != 0)
-                        {
-                            continue;
-                        }
-
-                        var firstHalf = value.AsSpan(0, value.Length / 2);
-                        var secondHalf = value.AsSpan(value.Length / 2);
-
-                        if (firstHalf.SequenceEqual(secondHalf))
+                        if (IsInvalid(i))
                         {
                             sum += i;
                         }
@@ -54,6 +45,20 @@
             }
 
             return sum;
+
+            static bool IsInvalid(long num)
+            {
+                var value = num.ToString();
+                if (value.Length % 2 != 0)
+                {
+                    return false;
+                }
+
+                var firstHalf = value.AsSpan(0, value.Length / 2);
+                var secondHalf = value.AsSpan(value.Length / 2);
+
+                return firstHalf.SequenceEqual(secondHalf);
+            }
         }
     }
 }
