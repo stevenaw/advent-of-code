@@ -14,7 +14,7 @@ namespace AdventOfCode
             var trimmedPayload = payload.Slice(0, prefix.Length + len);
 
             Span<byte> payloadBytes = stackalloc byte[trimmedPayload.Length * sizeof(char)];
-            var size = Encoding.Default.GetBytes(trimmedPayload, payloadBytes);
+            var size = Encoding.ASCII.GetBytes(trimmedPayload, payloadBytes);
             payloadBytes = payloadBytes.Slice(0, size);
 
             Span<byte> hashBytes = stackalloc byte[16];
