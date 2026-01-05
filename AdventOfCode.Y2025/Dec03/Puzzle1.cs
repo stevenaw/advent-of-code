@@ -9,16 +9,9 @@
 
         private static int GetMaxJoltage(ReadOnlySpan<char> line)
         {
-            var firstIdx = FindIndexOfHighestDigit(line);
-
-            if (firstIdx == line.Length - 1)
-            {
-                // Highest digit is already in the last position.
-                // Slice off the other part and refind the highest there
-                firstIdx = FindIndexOfHighestDigit(line.Slice(0, line.Length - 1));
-            }
-
-            var secondIdx = FindIndexOfHighestDigit(line.Slice(firstIdx + 1)) + firstIdx + 1;
+            // slice off last character to ensure we don't pick the last digit as highest first
+            var firstIdx = FindIndexOfHighestDigit(line[..^1]);
+            var secondIdx = FindIndexOfHighestDigit(line[(firstIdx + 1)..]) + firstIdx + 1;
 
             var firstDigit = line[firstIdx] - '0';
             var secondDigit = line[secondIdx] - '0';
