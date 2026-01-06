@@ -55,12 +55,13 @@ namespace AdventOfCode.Y2025.Dec04
 
         public Grid DeepClone()
         {
-            var newData = new bool[ActualHeight][];
+            var newData = GC.AllocateUninitializedArray<bool[]>(ActualHeight);
 
             for (var y = 0; y < ActualHeight; y++)
             {
-                newData[y] = new bool[ActualWidth];
-                Array.Copy(_data[y], newData[y], ActualWidth);
+                var newRow = GC.AllocateUninitializedArray<bool>(ActualWidth);
+                _data[y].CopyTo(newRow);
+                newData[y] = newRow;
             }
 
             return new Grid(newData);
