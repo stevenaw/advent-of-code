@@ -1,26 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <None Remove="Dec01\Data.txt" />
-    <None Remove="Dec02\Data.txt" />
-    <None Remove="Dec03\Data.txt" />
-    <None Remove="Dec04\Data.txt" />
-    <None Remove="Dec05\Data.txt" />
-    <None Remove="Dec06\Data.txt" />
-    <None Remove="Dec07\Data.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Dec01\Data.txt" />
-    <EmbeddedResource Include="Dec02\Data.txt" />
-    <EmbeddedResource Include="Dec03\Data.txt" />
-    <EmbeddedResource Include="Dec04\Data.txt" />
-    <EmbeddedResource Include="Dec05\Data.txt" />
-    <EmbeddedResource Include="Dec06\Data.txt" />
-    <EmbeddedResource Include="Dec07\Data.txt" />
-    <EmbeddedResource Include="Dec08\Data.txt" />
-    <EmbeddedResource Include="Dec09\Data.txt" />
-    <EmbeddedResource Include="Dec10\Data.txt" />
+    <EmbeddedResource Include="Dec*\Data.txt" />
   </ItemGroup>
 
   <ItemGroup>

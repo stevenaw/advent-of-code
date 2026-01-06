@@ -1,9 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <EmbeddedResource Include="Dec01\Data.txt" />
-    <EmbeddedResource Include="Dec02\Data.txt" />
-    <EmbeddedResource Include="Dec03\Data.txt" />
+    <EmbeddedResource Include="Dec*\Data.txt" />
   </ItemGroup>
 
   <ItemGroup>

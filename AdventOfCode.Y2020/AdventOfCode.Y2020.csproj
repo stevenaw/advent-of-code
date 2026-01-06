@@ -1,28 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
+    <EmbeddedResource Include="Dec*\Data.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Dec01\Data.txt" />
-    <EmbeddedResource Include="Dec02\Data.txt" />
-    <EmbeddedResource Include="Dec03\Data.txt" />
-    <EmbeddedResource Include="Dec04\Data.txt" />
-    <EmbeddedResource Include="Dec05\Data.txt" />
-    <EmbeddedResource Include="Dec06\Data.txt" />
-    <EmbeddedResource Include="Dec07\Data.txt" />
-    <EmbeddedResource Include="Dec08\Data.txt" />
-    <EmbeddedResource Include="Dec09\Data.txt" />
-    <EmbeddedResource Include="Dec10\Data.txt" />
-    <EmbeddedResource Include="Dec11\Data.txt" />
-    <EmbeddedResource Include="Dec12\Data.txt" />
-    <EmbeddedResource Include="Dec13\Data.txt" />
-    <EmbeddedResource Include="Dec14\Data.txt" />
-    <EmbeddedResource Include="Dec15\Data.txt" />
-    <EmbeddedResource Include="Dec16\Data.txt" />
-    <EmbeddedResource Include="Dec17\Data.txt" />
-    <EmbeddedResource Include="Dec18\Data.txt" />
-    <EmbeddedResource Include="Dec19\Data.txt" />
+    <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
   </ItemGroup>
+  
 </Project>
