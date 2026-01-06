@@ -42,32 +42,32 @@ namespace AdventOfCode.Y2025.Dec05
             // Sort by lower bound
             ranges.Sort((a, b) => a.min.CompareTo(b.min));
 
-            var merged = new List<(long min, long max)>(ranges.Count);
+            var merged = new (long min, long max)[ranges.Count];
+            var mergedCount = 0;
             foreach (var range in ranges)
             {
-                if (merged.Count == 0)
+                if (mergedCount == 0)
                 {
-                    merged.Add(range);
+                    merged[mergedCount++] = range;
                     continue;
                 }
 
-                var last = merged[merged.Count - 1];
+                ref var last = ref merged[mergedCount-1];
 
                 // If overlapping (next.min <= last.max) merge them.
                 if (range.min <= last.max)
                 {
-                    var newMax = Math.Max(last.max, range.max);
-                    merged[merged.Count - 1] = (last.min, newMax);
+                    last.max = Math.Max(last.max, range.max);
                 }
                 else
                 {
-                    merged.Add(range);
+                    merged[mergedCount++] = range;
                 }
             }
 
             // Replace original list contents with merged results
             ranges.Clear();
-            ranges.AddRange(merged);
+            ranges.AddRange(merged.AsSpan(0, mergedCount));
         }
     }
 }
