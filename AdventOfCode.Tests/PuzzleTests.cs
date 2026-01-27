@@ -97,6 +97,11 @@ namespace AdventOfCode.Tests
             yield return new TestCaseData(2017, 10, 1).SetExpectedResult(212);
             yield return new TestCaseData(2017, 10, 2).SetExpectedResult("96de9657665675b51cd03f0b3528ba26");
 
+            yield return new TestCaseData(2018, 1, 1).SetExpectedResult(582);
+            yield return new TestCaseData(2018, 1, 2).SetExpectedResult(488);
+            yield return new TestCaseData(2018, 2, 1).SetExpectedResult(8610);
+            yield return new TestCaseData(2018, 2, 2).SetExpectedResult("iosnxmfkpabcjpdywvrtahluy");
+
             yield return new TestCaseData(2020, 1, 1).SetExpectedResult(878724);
             yield return new TestCaseData(2020, 1, 2).SetExpectedResult(201251610);
             yield return new TestCaseData(2020, 2, 1).SetExpectedResult(572);
