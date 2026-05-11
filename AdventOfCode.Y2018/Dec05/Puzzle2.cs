@@ -23,33 +23,20 @@
 
         private static void RemoveAll(ref Span<char> input, char c)
         {
-            int idx = -1;
-            var startIdx = 0;
-
             c = char.ToLower(c);
 
-            do
+            var writeIdx = 0;
+            for (var i = 0; i < input.Length; i++)
             {
-                idx = -1;
-                for (int i = startIdx; i < input.Length; i++)
+                // We can assume that the input is only ASCII letters,
+                // so we can just flip the case bit and compare to the target character.
+                if ((input[i] | 0x20) != c)
                 {
-                    if ((input[i] | 0x20) == c)
-                    {
-                        idx = i;
-                        break;
-                    }
-                }
-                if (idx != -1)
-                {
-                    for (var i = idx; i < input.Length - 1; i++)
-                    {
-                        input[i] = input[i + 1];
-                    }
-                    input = input[..^1];
-                    startIdx = idx;
+                    input[writeIdx++] = input[i];
                 }
             }
-            while (idx != -1);
+
+            input = input[..writeIdx];
         }
     }
 }
