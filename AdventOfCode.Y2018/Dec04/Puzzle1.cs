@@ -4,46 +4,22 @@
     {
         protected override long Solve(IEnumerable<string> lines)
         {
-            var data = lines.ToArray();
-            Array.Sort(data);
-
             var sleepWindows = new Dictionary<int, int[]>();
             var sleepDurations = new Dictionary<int, int>();
-            var currentGuard = 0;
-            var sleepStart = 0;
 
-            foreach (var line in data)
+            foreach (var nap in PuzzleHelper.EnumerateSleepWindows(lines))
             {
-                var x = GuardAction.Parse(line);
-
-                if (x.desc.StartsWith("Guard #", StringComparison.Ordinal))
+                if (!sleepDurations.ContainsKey(nap.guardId))
                 {
-                    var x2 = x.desc.Slice(7);
-                    var end = x2.IndexOf(' ');
-
-                    currentGuard = int.Parse(x2.Slice(0, end));
-                    sleepStart = 0;
-
-                    if (!sleepDurations.ContainsKey(currentGuard))
-                    {
-                        sleepWindows[currentGuard] = new int[60];
-                        sleepDurations[currentGuard] = 0;
-                    }
+                    sleepWindows[nap.guardId] = new int[60];
+                    sleepDurations[nap.guardId] = 0;
                 }
-                else if (x.desc.Equals("falls asleep", StringComparison.Ordinal))
-                {
-                    sleepStart = x.ts.Minute;
-                }
-                else if (x.desc.Equals("wakes up", StringComparison.Ordinal))
-                {
-                    var duration = x.ts.Minute - sleepStart;
 
-                    sleepDurations[currentGuard] += duration;
+                sleepDurations[nap.guardId] += nap.sleepEnd - nap.sleepStart;
 
-                    for (var i = sleepStart; i < x.ts.Minute; i++)
-                    {
-                        sleepWindows[currentGuard][i]++;
-                    }
+                for (var i = nap.sleepStart; i < nap.sleepEnd; i++)
+                {
+                    sleepWindows[nap.guardId][i]++;
                 }
             }
 
@@ -51,25 +27,6 @@
             var minuteAsleepMost = sleepWindows[guardAsleepMost].IndexOfMaxValue();
 
             return guardAsleepMost * minuteAsleepMost;
-        }
-
-        
-
-        internal ref struct GuardAction(DateTime ts, ReadOnlySpan<char> desc)
-        {
-            public readonly DateTime ts = ts;
-            public readonly ReadOnlySpan<char> desc = desc;
-
-            internal static GuardAction Parse(string line)
-            {
-                var l = line.AsSpan(1); // trim leading '['
-
-                var idx = l.IndexOf(']');
-                var ts = l.Slice(0, idx);
-                var desc = l.Slice(idx + 2);
-
-                return new GuardAction(DateTime.Parse(ts), desc);
-            }
         }
     }
 }
