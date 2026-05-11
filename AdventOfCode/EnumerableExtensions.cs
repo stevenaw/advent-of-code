@@ -43,5 +43,23 @@
 
             return indexOfMaxValue;
         }
+
+        public static void RemoveAll(this ref Span<char> input, char c)
+        {
+            c = char.ToLower(c);
+
+            var writeIdx = 0;
+            for (var i = 0; i < input.Length; i++)
+            {
+                // We can assume that the input is only ASCII letters,
+                // so we can just flip the case bit and compare to the target character.
+                if ((input[i] | 0x20) != c)
+                {
+                    input[writeIdx++] = input[i];
+                }
+            }
+
+            input = input[..writeIdx];
+        }
     }
 }
