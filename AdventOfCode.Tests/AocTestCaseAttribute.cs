@@ -10,17 +10,15 @@
         }
 
         public NUnit.Framework.TestCaseData SetExpectedResult(string expectedResult)
-        {
-            this.ExpectedResult = expectedResult;
-            TypeArgs = [typeof(string)];
-
-            return this;
-        }
+            => SetExpectedResult<string>(expectedResult);
 
         public NUnit.Framework.TestCaseData SetExpectedResult(long expectedResult)
+            => SetExpectedResult<long>(expectedResult);
+
+        private NUnit.Framework.TestCaseData SetExpectedResult<TResult>(TResult expectedResult)
         {
             this.ExpectedResult = expectedResult;
-            TypeArgs = [typeof(long)];
+            TypeArgs = [typeof(TResult)];
 
             return this;
         }
